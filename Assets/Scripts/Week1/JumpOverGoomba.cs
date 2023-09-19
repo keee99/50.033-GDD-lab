@@ -31,7 +31,8 @@ public class JumpOverGoomba : MonoBehaviour
         // In the moment that mario starts jumping from the Ground.
         // IsOnGround() returns false for Ground-tagged obstacles, true only
         // for Ground layer, thus jumping from obstacles will NOT shift onGroundState to false.
-        // This works for now but may be a problem if enemies are on obstacles.
+        // This prevents scoring while on obstacle above enemy, 
+        // but may be a problem if jumping from obstacles or if enemies are on obstacles.
         if (Input.GetKeyDown(KeyCode.Space) && IsOnGround())
         {
             onGroundState = false;
@@ -42,7 +43,7 @@ public class JumpOverGoomba : MonoBehaviour
     private void PerformScoring()
     {
         // When jumping: off the ground and space pressed: 
-        // While off the ground, scoring is enabled 
+        // While off the ground, scoring is enabled
         if (!onGroundState && countScoreState)
         {
             // Goomba is near below Mario and we haven't registered our score, increment score
