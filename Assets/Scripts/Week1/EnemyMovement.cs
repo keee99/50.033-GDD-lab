@@ -8,7 +8,8 @@ public class EnemyMovement : MonoBehaviour
     private float originalX;
     private float maxOffset = 5f;
     private float enemyPatrolTime = 3.0f;
-    public int moveRight = -1;
+    public int moveRightInitial = -1;
+    private int moveRightState;
     private Vector2 velocity;
 
     private Rigidbody2D enemyBody;
@@ -19,8 +20,11 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startPosition = transform.localPosition;
+
         enemyBody = GetComponent<Rigidbody2D>();
         originalX = transform.position.x;
+        moveRightState = moveRightInitial;
         ComputeVelocity();
 
     }
@@ -28,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
     public void ComputeVelocity()
     {
         float xSpeed = maxOffset / enemyPatrolTime;
-        velocity = new Vector2(moveRight * xSpeed, 0);
+        velocity = new Vector2(moveRightState * xSpeed, 0);
     }
 
     void MoveGoomba()
@@ -47,9 +51,26 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            moveRight *= -1;
+            moveRightState *= -1;
             ComputeVelocity();
             MoveGoomba();
         }
+    }
+
+    public void Reset()
+    {
+        ResetPosition();
+        ResetMovement();
+    }
+
+    public void ResetMovement()
+    {
+        moveRightState = moveRightInitial;
+        ComputeVelocity();
+    }
+
+    private void ResetPosition()
+    {
+        transform.localPosition = startPosition;
     }
 }

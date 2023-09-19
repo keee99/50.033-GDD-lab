@@ -180,9 +180,8 @@ public class PlayerMovement : MonoBehaviour
     private void ResetEnemy(Transform enemy)
     {
         EnemyMovement childMovement = enemy.GetComponent<EnemyMovement>();
-        enemy.transform.localPosition = enemy.GetComponent<EnemyMovement>().startPosition;
-        childMovement.moveRight = -1;
-        childMovement.ComputeVelocity();
+        // enemy.transform.localPosition = enemy.GetComponent<EnemyMovement>().startPosition;
+        childMovement.Reset();
     }
 
 
