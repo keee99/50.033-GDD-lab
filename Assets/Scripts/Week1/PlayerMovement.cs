@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Lab 2: Animation
     public Animator marioAnimator;
+    public Transform gameCamera;
 
     // Lab 2: Audio
     public AudioSource marioAudio;
@@ -225,6 +226,11 @@ public class PlayerMovement : MonoBehaviour
         EnemyMovement childMovement = enemy.GetComponent<EnemyMovement>();
         // enemy.transform.localPosition = enemy.GetComponent<EnemyMovement>().startPosition;
         childMovement.Reset();
+    }
+
+    private void ResetCamera()
+    {
+        gameCamera.position = new Vector3(0.34f, 2f, -10f);
     }
 
 
