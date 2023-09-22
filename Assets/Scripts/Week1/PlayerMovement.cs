@@ -32,6 +32,16 @@ public class PlayerMovement : MonoBehaviour
     public JumpOverGoomba jumpOverGoomba;
 
 
+    // Lab 2: Animation
+    public Animator marioAnimator;
+
+    // Lab 2: Audio
+    public AudioSource marioAudio;
+    public AudioClip marioDeath;
+    [System.NonSerialized] public bool alive = true;
+    public float deathImpulse = 50;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +49,11 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
+        marioAnimator = GetComponent<Animator>();
 
         toggleGameOverUI(false);
+
+        marioAnimator.SetBool("onGround", onGroundState);
 
     }
 
@@ -48,12 +61,15 @@ public class PlayerMovement : MonoBehaviour
     // Place physics engine stuff here: same frequency as the physics system
     void FixedUpdate()
     {
-        MoveHorizontal();
-        MoveVertical();
+        if (alive)
+        {
+            MoveHorizontal();
+            MoveVertical();
+        }
     }
 
     // !!
-    // We do not implement the flipping of Sprite under FixedUpdate 
+    // We do not implement the animation related stuff under FixedUpdate 
     // since it has nothing to do with the Physics Engine.
     private void Update()
     {
@@ -62,20 +78,31 @@ public class PlayerMovement : MonoBehaviour
         {
             isSpriteFacingRight = false;
             marioSprite.flipX = true;
+            if (marioBody.velocity.x > 0.1f)
+            {
+                marioAnimator.SetTrigger("onSkid");
+            }
         }
 
         if (Input.GetKeyDown("d") && !isSpriteFacingRight)
         {
             isSpriteFacingRight = true;
             marioSprite.flipX = false;
+            if (marioBody.velocity.x < -0.1f)
+            {
+                marioAnimator.SetTrigger("onSkid");
+            }
         }
+
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag(TAG_GROUND))
+        if (other.gameObject.CompareTag(TAG_GROUND) && !onGroundState)
         {
             onGroundState = true;
+            marioAnimator.SetBool("onGround", onGroundState);
         }
     }
 
@@ -88,13 +115,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void GameOverScene()
+    {
+        Time.timeScale = 0.0f;
+        toggleGameOverUI(true);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(TAG_ENEMY))
+        if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
         {
-            Time.timeScale = 0.0f; // Freezes time
-            toggleGameOverUI(true);
+            marioBody.bodyType = RigidbodyType2D.Static;
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false;
         }
     }
 
@@ -131,6 +166,9 @@ public class PlayerMovement : MonoBehaviour
         {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
+
+            // We dont put it in onCollisionExit as we don't want jumping when space not pressed
+            marioAnimator.SetBool("onGround", onGroundState);
         }
     }
 
@@ -156,6 +194,8 @@ public class PlayerMovement : MonoBehaviour
         marioBody.transform.position = new Vector3(-4.46f, -2.5f, 0.0f);
         marioBody.velocity = Vector3.zero;
 
+        GetComponent<Collider2D>().enabled = true;
+
         isSpriteFacingRight = true;
         marioSprite.flipX = false;
 
@@ -168,6 +208,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         jumpOverGoomba.score = 0;
+
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
 
     }
 
@@ -191,6 +234,23 @@ public class PlayerMovement : MonoBehaviour
         ResetGame();
         Time.timeScale = 1.0f;
     }
+
+
+
+    // LAB 2: Audio callback
+    void PlayJumpSound()
+    {
+        marioAudio.PlayOneShot(marioAudio.clip);
+    }
+
+    void PlayDeathImpulse()
+    {
+        marioBody.bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Collider2D>().enabled = false;
+        marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+
 
 
 }
