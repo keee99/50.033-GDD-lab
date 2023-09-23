@@ -7,34 +7,50 @@ public class QBlockBehaviour : MonoBehaviour
 
     public CoinController coin;
     private Rigidbody2D rb;
-    private bool isBroken;
+    private bool isBroken = false;
+
+    private Vector3 originalPosition;
+
+    private bool isCollisionFromBottom = true;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(transform.position.ToString());
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        isBroken = false;
+
+        originalPosition = transform.position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (rb.velocity.y < 0 && isBroken && transform.position.y < originalPosition.y)
+        {
+            DisableSpring();
+            transform.position = originalPosition;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && !isBroken)
+
+        // Debug.Log(other.GetContact(0).point);
+        if (other.gameObject.CompareTag("Player") && isCollisionFromBottom && !isBroken)
         {
-            animator.SetTrigger("broken");
-            isBroken = true;
-
-            SpawnItem();
-
+            BreakBlock();
         }
+    }
+
+    public void BreakBlock()
+    {
+        isBroken = true;
+        animator.SetTrigger("broken");
+        SpawnItem();
     }
 
     // Brick may not always spawn coin
@@ -43,10 +59,21 @@ public class QBlockBehaviour : MonoBehaviour
     {
         coin.PlayJump();
 
-        // Play item animation
-        // At the end of animation:
-        //      DisableSpring()
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        DisableSpring();
+        isCollisionFromBottom = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!isBroken)
+        {
+            EnableSpring();
+        }
+        isCollisionFromBottom = true;
     }
 
 
@@ -56,9 +83,9 @@ public class QBlockBehaviour : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    public void PlayCoinSound()
+    public void EnableSpring()
     {
-        // Unimplemented
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     public void Reset()
