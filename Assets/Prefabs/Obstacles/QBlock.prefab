@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4168391626315873026}
   - component: {fileID: 8380378161315157448}
   - component: {fileID: 1105913379175827020}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: QBlock
   m_TagString: Obstacles
   m_Icon: {fileID: 0}

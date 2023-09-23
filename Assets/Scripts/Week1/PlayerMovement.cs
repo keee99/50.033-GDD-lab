@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     [System.NonSerialized] public bool alive = true;
     public float deathImpulse = 50;
 
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
+
 
     // Start is called before the first frame update
     void Start()
@@ -100,15 +102,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (
-            (
-                other.gameObject.CompareTag("Ground")
-                || other.gameObject.CompareTag("Enemy")
-                || other.gameObject.CompareTag("Obstacles")
-            )
-            && !onGroundState)
+        if (((collisionLayerMask & (1 << other.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
+            // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
     }
