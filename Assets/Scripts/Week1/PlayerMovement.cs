@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     public GameObject enemies;
+    public GameObject blocks;
     public JumpOverGoomba jumpOverGoomba;
 
 
@@ -211,6 +212,11 @@ public class PlayerMovement : MonoBehaviour
             ResetEnemy(eachChild);
         }
 
+        foreach (Transform eachChild in blocks.transform)
+        {
+            ResetBlock(eachChild);
+        }
+
         jumpOverGoomba.score = 0;
 
         marioAnimator.SetTrigger("gameRestart");
@@ -229,6 +235,11 @@ public class PlayerMovement : MonoBehaviour
         EnemyMovement childMovement = enemy.GetComponent<EnemyMovement>();
         // enemy.transform.localPosition = enemy.GetComponent<EnemyMovement>().startPosition;
         childMovement.Reset();
+    }
+
+    private void ResetBlock(Transform block)
+    {
+        // Unimpl
     }
 
     private void ResetCamera()

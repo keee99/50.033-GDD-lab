@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class QBlockBehaviour : MonoBehaviour
+public class BrickBehaviour : MonoBehaviour
 {
 
     private Animator animator;
@@ -12,6 +12,7 @@ public class QBlockBehaviour : MonoBehaviour
     private Vector3 originalPosition;
 
     private bool isCollisionFromBottom = true;
+    private bool hasCoin;
 
 
 
@@ -21,6 +22,7 @@ public class QBlockBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
+        hasCoin = coin != null;
         originalPosition = transform.position;
 
     }
@@ -28,15 +30,17 @@ public class QBlockBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.y < 0 && isBroken && transform.position.y < originalPosition.y)
+        if (rb.velocity.y < 0 && transform.position.y < originalPosition.y)
         {
-            DisableSpring();
+            // DisableSpring();
             transform.position = originalPosition;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+
+        // Debug.Log(other.GetContact(0).point);
         if (other.gameObject.CompareTag("Player") && isCollisionFromBottom && !isBroken)
         {
             BreakBlock();
@@ -45,17 +49,19 @@ public class QBlockBehaviour : MonoBehaviour
 
     public void BreakBlock()
     {
-        isBroken = true;
-        animator.SetTrigger("broken");
-        SpawnItem();
+        // isBroken = true;
+        // animator.SetTrigger("broken");
+        SpawnCoin();
     }
 
     // Brick may not always spawn coin
     // QBlocks always spawn coins (for now)
-    public void SpawnItem()
+    public void SpawnCoin()
     {
-        coin.PlayJump();
+        if (hasCoin)
+            coin.PlayJump();
 
+        hasCoin = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -66,10 +72,7 @@ public class QBlockBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!isBroken)
-        {
-            EnableSpring();
-        }
+        EnableSpring();
         isCollisionFromBottom = true;
     }
 
@@ -88,7 +91,8 @@ public class QBlockBehaviour : MonoBehaviour
     public void Reset()
     {
         isBroken = false;
-        coin.Reset();
+        if (hasCoin)
+            coin.Reset();
     }
 
 

@@ -19,4 +19,14 @@ public class CoinController : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("reset");
     }
+
+    public void Enable()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void Disable()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
 }

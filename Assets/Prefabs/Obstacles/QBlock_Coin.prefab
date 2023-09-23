@@ -181,7 +181,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 1}
   m_AutoConfigureDistance: 0
   m_Distance: 1
-  m_DampingRatio: 1
+  m_DampingRatio: 0
   m_Frequency: 8
 --- !u!95 &6201982302664836375
 Animator:
@@ -252,10 +252,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.51296425, y: -0.3073141}
+  - {x: -0.51296425, y: -0.2667349}
   - {x: -0.5123415, y: 0.513923}
   - {x: 0.51497746, y: 0.5117601}
-  - {x: 0.51203346, y: -0.3439902}
+  - {x: 0.5187969, y: -0.28312135}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -329,6 +329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5274233926382267245}
     m_Modifications:
+    - target: {fileID: 1484268110538627578, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1484268110538627578, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
       propertyPath: m_LocalScale.z
       value: 0
