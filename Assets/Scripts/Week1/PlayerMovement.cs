@@ -100,7 +100,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag(TAG_GROUND) && !onGroundState)
+        if (
+            (
+                other.gameObject.CompareTag("Ground")
+                || other.gameObject.CompareTag("Enemy")
+                || other.gameObject.CompareTag("Obstacles")
+            )
+            && !onGroundState)
         {
             onGroundState = true;
             marioAnimator.SetBool("onGround", onGroundState);
