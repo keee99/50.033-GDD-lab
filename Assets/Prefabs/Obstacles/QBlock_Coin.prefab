@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5315492352361142260}
   - component: {fileID: 489144537059800766}
   - component: {fileID: 6201982302664836375}
-  - component: {fileID: 7561305434687818675}
   - component: {fileID: 2125997495390726662}
+  - component: {fileID: 1181318325402848016}
   m_Layer: 7
   m_Name: QBlock
   m_TagString: Obstacles
@@ -204,19 +204,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7561305434687818675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258138453738948357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6786b5afd82066346bd981cf37c03d68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coin: {fileID: 996668192153056744}
 --- !u!68 &2125997495390726662
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -260,6 +247,20 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1181318325402848016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258138453738948357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a3aaf9836bcd046b956ce19d358bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockType: 0
+  coin: {fileID: 996668192153056744}
 --- !u!1 &5499569047407505524
 GameObject:
   m_ObjectHideFlags: 0

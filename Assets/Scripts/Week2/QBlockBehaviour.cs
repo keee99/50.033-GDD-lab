@@ -20,6 +20,7 @@ public class QBlockBehaviour : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        Debug.Log(rb);
 
         originalPosition = transform.position;
 
@@ -28,8 +29,10 @@ public class QBlockBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (rb.velocity.y < 0 && isBroken && transform.position.y < originalPosition.y)
         {
+            Debug.Log("cool");
             DisableSpring();
             transform.position = originalPosition;
         }

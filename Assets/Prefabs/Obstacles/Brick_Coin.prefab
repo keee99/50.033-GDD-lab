@@ -241,7 +241,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 1}
   m_AutoConfigureDistance: 0
   m_Distance: 1
-  m_DampingRatio: 1
+  m_DampingRatio: 0.74
   m_Frequency: 8
 --- !u!68 &2688353753973580451
 EdgeCollider2D:
@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a3aaf9836bcd046b956ce19d358bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockType: 1
   coin: {fileID: 6916668261654539451}
 --- !u!1001 &4401483212185555468
 PrefabInstance:
@@ -307,6 +308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4220732614108306061}
     m_Modifications:
+    - target: {fileID: 1484268110538627578, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1484268110538627578, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

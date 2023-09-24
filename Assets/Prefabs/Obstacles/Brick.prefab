@@ -240,7 +240,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 1}
   m_AutoConfigureDistance: 0
   m_Distance: 1
-  m_DampingRatio: 1
+  m_DampingRatio: 0.74
   m_Frequency: 8
 --- !u!68 &3924417725847567857
 EdgeCollider2D:
@@ -297,4 +297,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a3aaf9836bcd046b956ce19d358bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockType: 1
   coin: {fileID: 0}

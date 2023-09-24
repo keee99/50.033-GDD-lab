@@ -844,6 +844,7 @@ MonoBehaviour:
   gameOverOverlay: {fileID: 1571140583}
   scoreText: {fileID: 644775911}
   enemies: {fileID: 117813275}
+  blocks: {fileID: 755828214}
   jumpOverGoomba: {fileID: 502511041}
   marioAnimator: {fileID: 502511042}
   gameCamera: {fileID: 519420032}
@@ -2312,6 +2313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1921075490}
   - {fileID: 1713251836}
   - {fileID: 1143855221}
   - {fileID: 852211840}
@@ -2687,15 +2689,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1157189237}
     m_Modifications:
     - target: {fileID: 2556994343993503424, guid: 7d336cace05c19c4bb418f12dc733cfd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.34
+      value: 8.29
       objectReference: {fileID: 0}
     - target: {fileID: 2556994343993503424, guid: 7d336cace05c19c4bb418f12dc733cfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9980391
+      value: -5.9580393
       objectReference: {fileID: 0}
     - target: {fileID: 2556994343993503424, guid: 7d336cace05c19c4bb418f12dc733cfd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2758,7 +2760,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4220732614108306061, guid: 2bf74e117e197ba42a708f992912fe70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9970005
+      value: 2.0019996
       objectReference: {fileID: 0}
     - target: {fileID: 4220732614108306061, guid: 2bf74e117e197ba42a708f992912fe70, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3006,6 +3008,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886883756}
   m_CullTransparentMesh: 1
+--- !u!4 &1921075490 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2556994343993503424, guid: 7d336cace05c19c4bb418f12dc733cfd, type: 3}
+  m_PrefabInstance: {fileID: 1606300498}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1936085661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3016,7 +3023,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5274233926382267245, guid: 92bd2a9e03eab1f46967d5276af7e0b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.987
+      value: 0.992
       objectReference: {fileID: 0}
     - target: {fileID: 5274233926382267245, guid: 92bd2a9e03eab1f46967d5276af7e0b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3968,4 +3975,3 @@ SceneRoots:
   - {fileID: 578649552}
   - {fileID: 1108834316}
   - {fileID: 704623916}
-  - {fileID: 1606300498}

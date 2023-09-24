@@ -3,6 +3,14 @@ using UnityEngine;
 public class BrickBehaviour : MonoBehaviour
 {
 
+    public enum Type
+    {
+        qBlock,
+        brick
+    }
+
+    public Type blockType;
+
     private Animator animator;
 
     public CoinController coin;
@@ -12,7 +20,7 @@ public class BrickBehaviour : MonoBehaviour
     private Vector3 originalPosition;
 
     private bool isCollisionFromBottom = true;
-    private bool hasCoin;
+    private bool hasItem;
 
 
 
@@ -22,9 +30,21 @@ public class BrickBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        hasCoin = coin != null;
         originalPosition = transform.position;
+        InitHasItem();
+    }
 
+    private bool InitHasItem()
+    {
+        if (blockType.Equals(Type.qBlock))
+        {
+            hasItem = true;
+        }
+        else
+        {
+            hasItem = coin != null;
+        }
+        return hasItem;
     }
 
     // Update is called once per frame
@@ -32,6 +52,10 @@ public class BrickBehaviour : MonoBehaviour
     {
         if (rb.velocity.y < 0 && transform.position.y < originalPosition.y)
         {
+            if (blockType.Equals(Type.qBlock) && isBroken)
+            {
+                DisableSpring();
+            }
             // DisableSpring();
             transform.position = originalPosition;
         }
@@ -49,8 +73,12 @@ public class BrickBehaviour : MonoBehaviour
 
     public void BreakBlock()
     {
-        // isBroken = true;
-        // animator.SetTrigger("broken");
+        if (blockType.Equals(Type.qBlock) && !isBroken)
+        {
+            isBroken = true;
+            animator.SetTrigger("broken");
+        }
+
         SpawnCoin();
     }
 
@@ -58,10 +86,10 @@ public class BrickBehaviour : MonoBehaviour
     // QBlocks always spawn coins (for now)
     public void SpawnCoin()
     {
-        if (hasCoin)
+        if (hasItem)
             coin.PlayJump();
 
-        hasCoin = false;
+        hasItem = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -72,7 +100,10 @@ public class BrickBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        EnableSpring();
+        if (!isBroken)
+        {
+            EnableSpring();
+        }
         isCollisionFromBottom = true;
     }
 
@@ -90,9 +121,16 @@ public class BrickBehaviour : MonoBehaviour
 
     public void Reset()
     {
+        EnableSpring();
+        InitHasItem();
         isBroken = false;
-        if (hasCoin)
+        if (coin != null)
             coin.Reset();
+
+        if (blockType.Equals(Type.qBlock))
+        {
+            animator.SetTrigger("reset");
+        }
     }
 
 

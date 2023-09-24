@@ -239,7 +239,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetBlock(Transform block)
     {
-        // Unimpl
+        BrickBehaviour brickBehaviour = block.GetComponentInChildren<BrickBehaviour>();
+        brickBehaviour.Reset();
     }
 
     private void ResetCamera()
