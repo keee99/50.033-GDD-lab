@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BrickBehaviour : MonoBehaviour
+public class BlockBehaviour : MonoBehaviour
 {
 
     public enum Type
@@ -19,7 +19,7 @@ public class BrickBehaviour : MonoBehaviour
 
     private Vector3 originalPosition;
 
-    private bool isCollisionFromBottom = true;
+    private bool isCollisionFromBottom = false;
     private bool hasItem;
 
 
@@ -94,17 +94,13 @@ public class BrickBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        DisableSpring();
-        isCollisionFromBottom = false;
+        isCollisionFromBottom = true;
+        Debug.Log("breakblock");
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!isBroken)
-        {
-            EnableSpring();
-        }
-        isCollisionFromBottom = true;
+        isCollisionFromBottom = false;
     }
 
 
