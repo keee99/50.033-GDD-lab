@@ -95,7 +95,6 @@ public class BlockBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         isCollisionFromBottom = true;
-        Debug.Log("breakblock");
     }
 
     private void OnTriggerExit2D(Collider2D other)
