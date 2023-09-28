@@ -46,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
 
+    // Lab 3
+    private bool moving = false;
+    private bool jumpedState = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,10 +70,9 @@ public class PlayerMovement : MonoBehaviour
     // Place physics engine stuff here: same frequency as the physics system
     void FixedUpdate()
     {
-        if (alive)
+        if (alive && moving)
         {
-            MoveHorizontal();
-            MoveVertical();
+            Move(isSpriteFacingRight == true ? 1 : -1);
         }
     }
 
@@ -77,8 +81,14 @@ public class PlayerMovement : MonoBehaviour
     // since it has nothing to do with the Physics Engine.
     private void Update()
     {
-        // Flip Mario sprite
-        if (Input.GetKeyDown("a") && isSpriteFacingRight)
+        // Flip Mario sprite moved
+
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
+    }
+
+    void FlipMarioSprite(int value)
+    {
+        if (value == -1 && isSpriteFacingRight)
         {
             isSpriteFacingRight = false;
             marioSprite.flipX = true;
@@ -87,8 +97,7 @@ public class PlayerMovement : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
             }
         }
-
-        if (Input.GetKeyDown("d") && !isSpriteFacingRight)
+        else if (value == 1 && !isSpriteFacingRight)
         {
             isSpriteFacingRight = true;
             marioSprite.flipX = false;
@@ -97,9 +106,8 @@ public class PlayerMovement : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
             }
         }
-
-        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
     }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -138,44 +146,96 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoveHorizontal()
+    void Move(int value)
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        Vector2 movement = new Vector2(value, 0);
 
-        // Move Mario if horizontal input keys are pressed
-        if (Mathf.Abs(moveHorizontal) > 0)
+        // Limit mario to max speed
+        // if (marioBody.velocity.magnitude < maxSpeed)
+        if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
         {
-            Vector2 movement = new Vector2(moveHorizontal, 0);
-
-            // Limit mario to max speed
-            // if (marioBody.velocity.magnitude < maxSpeed)
-            if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
-            {
-                marioBody.AddForce(movement * speed);
-            }
+            marioBody.AddForce(movement * speed);
         }
-
-        // Stops Mario once the key is lifted
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
-            // marioBody.velocity = Vector2.zero;
-            marioBody.velocity = new Vector2(0, marioBody.velocity.y);
-
-        }
-
     }
 
-    private void MoveVertical()
+    public void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && onGroundState)
+        if (alive && onGroundState)
         {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
+            jumpedState = true;
 
             // We dont put it in onCollisionExit as we don't want jumping when space not pressed
             marioAnimator.SetBool("onGround", onGroundState);
         }
     }
+
+    public void JumpHold()
+    {
+        if (alive && onGroundState)
+        {
+            marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
+            jumpedState = false;
+        }
+    }
+
+    /// <summary>
+    /// MoveCheck used as CALLBACK to UnityEvent for horizontal movement from input
+    /// </summary>
+    /// <param name="value">Int value from input system</param>
+    public void MoveCheck(int value)
+    {
+        if (value == 0)
+        {
+            moving = false;
+        }
+        else
+        {
+            FlipMarioSprite(value);
+            moving = true;
+            Move(value);
+        }
+    }
+
+    private void MoveHorizontal()
+    {
+        // float moveHorizontal = Input.GetAxisRaw("Horizontal");
+
+        // // Move Mario if horizontal input keys are pressed
+        // if (Mathf.Abs(moveHorizontal) > 0)
+        // {
+        //     Vector2 movement = new Vector2(moveHorizontal, 0);
+
+        //     // Limit mario to max speed
+        //     // if (marioBody.velocity.magnitude < maxSpeed)
+        //     if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
+        //     {
+        //         marioBody.AddForce(movement * speed);
+        //     }
+        // }
+
+        // // Stops Mario once the key is lifted
+        // if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        // {
+        //     // marioBody.velocity = Vector2.zero;
+        //     marioBody.velocity = new Vector2(0, marioBody.velocity.y);
+
+        // }
+
+    }
+
+    // private void MoveVertical()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Space) && onGroundState)
+    //     {
+    //         marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
+    //         onGroundState = false;
+
+    //         // We dont put it in onCollisionExit as we don't want jumping when space not pressed
+    //         marioAnimator.SetBool("onGround", onGroundState);
+    //     }
+    // }
 
     private void toggleGameOverUI(bool toggle)
     {
@@ -205,6 +265,7 @@ public class PlayerMovement : MonoBehaviour
         marioSprite.flipX = false;
 
         ResetScoreText();
+        ResetCamera();
 
 
         foreach (Transform eachChild in enemies.transform)

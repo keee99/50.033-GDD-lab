@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     {
         // Get coords of the bottomleft of viewport to find width of camera viewport
         // 0,0,0 is the camera viewport's local bottom left corner 
+        // the z-component is the distance of the resulting plane from the camera 
         Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
         viewportHalfWidth = Mathf.Abs(bottomLeft.x - transform.position.x);
         offset = transform.position.x - player.position.x;
