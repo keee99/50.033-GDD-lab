@@ -6,17 +6,25 @@ using UnityEngine;
 public class JumpOverGoomba : MonoBehaviour
 {
 
+    public static GameManager gameManager;
+
+
     public Transform enemyLocation;
-    public TextMeshProUGUI scoreText;
+    // public TextMeshProUGUI scoreText;
 
     private bool onGroundState;
 
-    [System.NonSerialized] public int score = 0; // Dont show in inspector
+    // [System.NonSerialized] public int score = 0; // Dont show in inspector
 
     private bool countScoreState = false;
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     private void FixedUpdate()
     {
@@ -50,18 +58,20 @@ public class JumpOverGoomba : MonoBehaviour
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
                 countScoreState = false;
-                score++;
-                UpdateScoreText();
+                gameManager.IncreaseScore(1);
+                // score++;
+                // UpdateScoreText();
             }
         }
 
     }
 
-    private void UpdateScoreText()
-    {
-        string scoreString = "Score: " + score.ToString();
-        scoreText.text = scoreString;
-    }
+    // OBSELETE
+    // private void UpdateScoreText()
+    // {
+    //     string scoreString = "Score: " + score.ToString();
+    //     scoreText.text = scoreString;
+    // }
 
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -95,11 +105,11 @@ public class JumpOverGoomba : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
+    // }
 
 
 }

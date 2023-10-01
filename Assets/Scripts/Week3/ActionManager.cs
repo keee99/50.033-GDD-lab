@@ -17,16 +17,16 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Jumphold Start");
+            // Debug.Log("Jumphold Start");
         }
         else if (context.performed)
         {
-            Debug.Log("Jumphold performed");
+            // Debug.Log("Jumphold performed");
             jumphold.Invoke();
         }
         else if (context.canceled)
         {
-            Debug.Log("Jumphold canceled");
+            // Debug.Log("Jumphold canceled");
         }
     }
 
@@ -35,16 +35,16 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Jump Start");
+            // Debug.Log("Jump Start");
         }
         else if (context.performed)
         {
-            Debug.Log("Jump performed");
+            // Debug.Log("Jump performed");
             jump.Invoke();
         }
         else if (context.canceled)
         {
-            Debug.Log("Jump canceled");
+            // Debug.Log("Jump canceled");
         }
     }
 
@@ -52,13 +52,13 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Move Start");
+            // Debug.Log("Move Start");
             int faceRight = context.ReadValue<float>() > 0 ? 1 : -1;
             moveCheck.Invoke(faceRight);
         }
         else if (context.canceled)
         {
-            Debug.Log("Move canceled");
+            // Debug.Log("Move canceled");
             moveCheck.Invoke(0);
         }
     }
@@ -67,15 +67,15 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Click Start");
+            // Debug.Log("Click Start");
         }
         else if (context.performed)
         {
-            Debug.Log("Click performed");
+            // Debug.Log("Click performed");
         }
         else if (context.canceled)
         {
-            Debug.Log("Click canceled");
+            // Debug.Log("Click canceled");
         }
     }
 
@@ -84,7 +84,7 @@ public class ActionManager : MonoBehaviour
         if (context.performed)
         {
             Vector2 point = context.ReadValue<Vector2>();
-            Debug.Log($"Point detected at {point}");
+            // Debug.Log($"Point detected at {point}");
         }
     }
 

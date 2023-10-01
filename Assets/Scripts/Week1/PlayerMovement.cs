@@ -22,15 +22,14 @@ public class PlayerMovement : MonoBehaviour
     private readonly string TAG_GROUND = "Ground";
     private readonly string TAG_ENEMY = "Enemy";
 
-    public Canvas gameCanvas;
     public Canvas gameOverOverlay;
 
     // Restart Game related
     public TextMeshProUGUI scoreText;
 
-    public GameObject enemies;
-    public GameObject blocks;
-    public JumpOverGoomba jumpOverGoomba;
+    // public GameObject enemies;
+    // public GameObject blocks;
+    // public JumpOverGoomba jumpOverGoomba;
 
 
     // Lab 2: Animation
@@ -251,11 +250,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void ResetGame()
+    public void Reset()
     {
-        toggleGameOverUI(false);
-
-        // Reset Position
         marioBody.transform.position = new Vector3(-4.46f, -2.5f, 0.0f);
         marioBody.velocity = Vector3.zero;
 
@@ -264,57 +260,22 @@ public class PlayerMovement : MonoBehaviour
         isSpriteFacingRight = true;
         marioSprite.flipX = false;
 
-        ResetScoreText();
-        ResetCamera();
-
-
-        foreach (Transform eachChild in enemies.transform)
-        {
-            ResetEnemy(eachChild);
-        }
-
-        foreach (Transform eachChild in blocks.transform)
-        {
-            ResetBlock(eachChild);
-        }
-
-        jumpOverGoomba.score = 0;
-
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
 
+        ResetCamera(); // Put in the camera controller instead?
     }
 
 
-    private void ResetScoreText()
-    {
-        scoreText.text = "Score: 0";
-    }
-
-    private void ResetEnemy(Transform enemy)
-    {
-        EnemyMovement childMovement = enemy.GetComponent<EnemyMovement>();
-        // enemy.transform.localPosition = enemy.GetComponent<EnemyMovement>().startPosition;
-        childMovement.Reset();
-    }
-
-    private void ResetBlock(Transform block)
-    {
-        BlockBehaviour blockBehaviour = block.GetComponentInChildren<BlockBehaviour>();
-        blockBehaviour.Reset();
-    }
+    // private void ResetBlock(Transform block)
+    // {
+    //     BlockBehaviour blockBehaviour = block.GetComponentInChildren<BlockBehaviour>();
+    //     blockBehaviour.Reset();
+    // }
 
     private void ResetCamera()
     {
         gameCamera.position = new Vector3(0.34f, 2f, -10f);
-    }
-
-
-    /// Callback method: public void with 1 or less params
-    public void RestartButtonCallback(int Input)
-    {
-        ResetGame();
-        Time.timeScale = 1.0f;
     }
 
 
