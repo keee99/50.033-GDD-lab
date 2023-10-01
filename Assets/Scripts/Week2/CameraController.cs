@@ -33,4 +33,9 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(desiredX, transform.position.y, transform.position.z);
         }
     }
+
+    public void Reset()
+    {
+        transform.position = new Vector3(0.34f, 2f, -10f); ;
+    }
 }

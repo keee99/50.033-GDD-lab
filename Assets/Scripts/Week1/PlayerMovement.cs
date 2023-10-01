@@ -22,11 +22,6 @@ public class PlayerMovement : MonoBehaviour
     private readonly string TAG_GROUND = "Ground";
     private readonly string TAG_ENEMY = "Enemy";
 
-    public Canvas gameOverOverlay;
-
-    // Restart Game related
-    public TextMeshProUGUI scoreText;
-
     // public GameObject enemies;
     // public GameObject blocks;
     // public JumpOverGoomba jumpOverGoomba;
@@ -34,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     // Lab 2: Animation
     public Animator marioAnimator;
-    public Transform gameCamera;
 
     // Lab 2: Audio
     public AudioSource marioAudio;
@@ -58,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator = GetComponent<Animator>();
-
-        toggleGameOverUI(false);
 
         marioAnimator.SetBool("onGround", onGroundState);
 
@@ -127,12 +119,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void GameOverScene()
-    {
-        Time.timeScale = 0.0f;
-        toggleGameOverUI(true);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -197,58 +183,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoveHorizontal()
-    {
-        // float moveHorizontal = Input.GetAxisRaw("Horizontal");
-
-        // // Move Mario if horizontal input keys are pressed
-        // if (Mathf.Abs(moveHorizontal) > 0)
-        // {
-        //     Vector2 movement = new Vector2(moveHorizontal, 0);
-
-        //     // Limit mario to max speed
-        //     // if (marioBody.velocity.magnitude < maxSpeed)
-        //     if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
-        //     {
-        //         marioBody.AddForce(movement * speed);
-        //     }
-        // }
-
-        // // Stops Mario once the key is lifted
-        // if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        // {
-        //     // marioBody.velocity = Vector2.zero;
-        //     marioBody.velocity = new Vector2(0, marioBody.velocity.y);
-
-        // }
-
-    }
-
-    // private void MoveVertical()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space) && onGroundState)
-    //     {
-    //         marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
-    //         onGroundState = false;
-
-    //         // We dont put it in onCollisionExit as we don't want jumping when space not pressed
-    //         marioAnimator.SetBool("onGround", onGroundState);
-    //     }
-    // }
-
-    private void toggleGameOverUI(bool toggle)
-    {
-        gameOverOverlay.enabled = toggle;
-        foreach (TextMeshProUGUI textComponent in gameOverOverlay.GetComponentsInChildren<TextMeshProUGUI>())
-        {
-            if (textComponent.CompareTag("Score"))
-            {
-                textComponent.text = scoreText.text;
-                break;
-            }
-        }
-    }
-
 
     public void Reset()
     {
@@ -263,21 +197,7 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
 
-        ResetCamera(); // Put in the camera controller instead?
     }
-
-
-    // private void ResetBlock(Transform block)
-    // {
-    //     BlockBehaviour blockBehaviour = block.GetComponentInChildren<BlockBehaviour>();
-    //     blockBehaviour.Reset();
-    // }
-
-    private void ResetCamera()
-    {
-        gameCamera.position = new Vector3(0.34f, 2f, -10f);
-    }
-
 
 
     // LAB 2: Audio callback
@@ -291,6 +211,11 @@ public class PlayerMovement : MonoBehaviour
         marioBody.bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Collider2D>().enabled = false;
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+    void InvokeGameOver()
+    {
+        GameManager.Instance.GameOver();
     }
 
 
