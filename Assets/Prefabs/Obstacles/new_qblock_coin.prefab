@@ -421,6 +421,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: coin_flipping
       objectReference: {fileID: 0}
+    - target: {fileID: 8576554455586647290, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: parameter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576554455586647290, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576554455586647290, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576554455586647290, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576554455586647290, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
