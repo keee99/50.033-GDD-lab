@@ -120,8 +120,9 @@ public class PlayerMovement3D : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter(Collision other)
     {
+        Debug.Log(((collisionLayerMask & (1 << other.transform.gameObject.layer)) > 0));
         if (((collisionLayerMask & (1 << other.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
@@ -266,7 +267,7 @@ public class PlayerMovement3D : MonoBehaviour
     void PlayDeathImpulse()
     {
         // marioBody.bodyType = RigidbodyType2D.Dynamic;
-        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Collider>().enabled = false;
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode.Impulse);
     }
 
