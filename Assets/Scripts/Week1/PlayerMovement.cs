@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Lab 2: Audio
     public AudioSource marioAudio;
-    public AudioClip marioDeath;
+    public AudioSource marioDeathAudio;
     [System.NonSerialized] public bool alive = true;
     public float deathImpulse = 50;
 
@@ -108,6 +108,20 @@ public class PlayerMovement : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
+        else if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
+        {
+            // If colliding the enemy from the top, kill the enemy, else kill mario
+
+            if (other.contacts[0].normal.y < 0)
+            {
+                other.gameObject.GetComponent<EnemyDeath>().Death();
+            }
+            else
+            {
+                Death();
+            }
+
+        }
     }
 
 
@@ -122,13 +136,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
-        {
-            marioBody.bodyType = RigidbodyType2D.Static;
-            marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
-            alive = false;
-        }
+
     }
 
     void Move(int value)
@@ -204,6 +212,14 @@ public class PlayerMovement : MonoBehaviour
     void PlayJumpSound()
     {
         marioAudio.PlayOneShot(marioAudio.clip);
+    }
+
+    public void Death()
+    {
+        marioBody.bodyType = RigidbodyType2D.Static;
+        marioAnimator.Play("mario-die");
+        marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+        alive = false;
     }
 
     void PlayDeathImpulse()

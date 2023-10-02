@@ -8,7 +8,8 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            child.GetComponent<EnemyMovement>().Reset();
+            child.GetChild(0).GetComponentInChildren<EnemyMovement>().Reset();
+            child.GetChild(0).GetComponentInChildren<EnemyDeath>().Reset();
         }
     }
 }
