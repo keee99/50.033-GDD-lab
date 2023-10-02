@@ -224,7 +224,6 @@ public class PlayerMovement3D : MonoBehaviour
     void MoveY(int value)
     {
         Vector3 movement = new Vector3(value, 0, 0);
-        Debug.Log("Y: " + movement);
         // Limit mario to max speed
         // if (marioBody.velocity.magnitude < maxSpeed)
         if (Mathf.Abs(marioBody.velocity.magnitude) < maxSpeed)
