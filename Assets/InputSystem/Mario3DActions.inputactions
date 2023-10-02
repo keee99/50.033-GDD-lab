@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "flip",
+                    "type": "Button",
+                    "id": "6577153e-80f3-4375-9fa0-7671839556d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -269,6 +278,17 @@
                     "action": "moveY",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a33a6ac9-b185-4dc9-96d5-11e49ed4dbee",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "flip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

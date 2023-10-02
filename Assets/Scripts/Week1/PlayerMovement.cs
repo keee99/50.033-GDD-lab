@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     private bool moving = false;
     private bool jumpedState = false;
 
+    public GameObject mario3D;
+
 
     // Start is called before the first frame update
     void Start()
@@ -232,6 +234,24 @@ public class PlayerMovement : MonoBehaviour
     void InvokeGameOver()
     {
         GameManager.Instance.GameOver();
+    }
+
+
+    public void SpawnMario2D(float x, float y)
+    {
+        gameObject.SetActive(true);
+        marioBody.transform.position = new Vector3(x, y, 0);
+        marioBody.velocity = Vector3.zero;
+        marioAnimator.SetTrigger("gameRestart");
+        Jump();
+    }
+
+    public void FlipMario()
+    {
+        Debug.Log("ASDDA");
+        mario3D.SetActive(true);
+        mario3D.GetComponent<PlayerMovement3D>().SpawnMario3D(marioBody.transform.position.x, marioBody.transform.position.y);
+        gameObject.SetActive(false);
     }
 
 

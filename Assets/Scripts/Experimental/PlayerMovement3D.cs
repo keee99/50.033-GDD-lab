@@ -45,6 +45,8 @@ public class PlayerMovement3D : MonoBehaviour
     private bool isGoingUp = true;
     private bool jumpedState = false;
 
+    public GameObject mario2D;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,8 @@ public class PlayerMovement3D : MonoBehaviour
         marioAnimator = GetComponent<Animator>();
 
         marioAnimator.SetBool("onGround", onGroundState);
+
+        gameObject.SetActive(false);
 
     }
 
@@ -83,6 +87,21 @@ public class PlayerMovement3D : MonoBehaviour
 
         marioAnimator.SetBool("isMoving", moving || movingY);
 
+    }
+
+    public void SpawnMario3D(float x, float y)
+    {
+        gameObject.SetActive(true);
+        marioBody.transform.position = new Vector3(x, y, 4.16f);
+        marioBody.velocity = Vector3.zero;
+        marioAnimator.SetTrigger("gameRestart");
+    }
+
+    public void FlipMario()
+    {
+        mario2D.SetActive(true);
+        mario2D.GetComponent<PlayerMovement>().SpawnMario2D(marioBody.transform.position.x, marioBody.transform.position.y);
+        gameObject.SetActive(false);
     }
 
     void FlipMarioSprite(int value)
@@ -122,7 +141,6 @@ public class PlayerMovement3D : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(((collisionLayerMask & (1 << other.transform.gameObject.layer)) > 0));
         if (((collisionLayerMask & (1 << other.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
@@ -260,6 +278,7 @@ public class PlayerMovement3D : MonoBehaviour
         // marioBody.bodyType = RigidbodyType2D.Static;
         marioAnimator.Play("mario-die");
         marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+        Jump();
         alive = false;
     }
 

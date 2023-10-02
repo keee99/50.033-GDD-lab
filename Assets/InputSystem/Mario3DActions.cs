@@ -80,6 +80,15 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""flip"",
+                    ""type"": ""Button"",
+                    ""id"": ""6577153e-80f3-4375-9fa0-7671839556d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +300,17 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
                     ""action"": ""moveY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a33a6ac9-b185-4dc9-96d5-11e49ed4dbee"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""flip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -349,6 +369,7 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
         m_gameplay_jumphold = m_gameplay.FindAction("jumphold", throwIfNotFound: true);
         m_gameplay_click = m_gameplay.FindAction("click", throwIfNotFound: true);
         m_gameplay_point = m_gameplay.FindAction("point", throwIfNotFound: true);
+        m_gameplay_flip = m_gameplay.FindAction("flip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -416,6 +437,7 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_jumphold;
     private readonly InputAction m_gameplay_click;
     private readonly InputAction m_gameplay_point;
+    private readonly InputAction m_gameplay_flip;
     public struct GameplayActions
     {
         private @Mario3DActions m_Wrapper;
@@ -426,6 +448,7 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
         public InputAction @jumphold => m_Wrapper.m_gameplay_jumphold;
         public InputAction @click => m_Wrapper.m_gameplay_click;
         public InputAction @point => m_Wrapper.m_gameplay_point;
+        public InputAction @flip => m_Wrapper.m_gameplay_flip;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -453,6 +476,9 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
             @point.started += instance.OnPoint;
             @point.performed += instance.OnPoint;
             @point.canceled += instance.OnPoint;
+            @flip.started += instance.OnFlip;
+            @flip.performed += instance.OnFlip;
+            @flip.canceled += instance.OnFlip;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -475,6 +501,9 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
             @point.started -= instance.OnPoint;
             @point.performed -= instance.OnPoint;
             @point.canceled -= instance.OnPoint;
+            @flip.started -= instance.OnFlip;
+            @flip.performed -= instance.OnFlip;
+            @flip.canceled -= instance.OnFlip;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -527,5 +556,6 @@ public partial class @Mario3DActions: IInputActionCollection2, IDisposable
         void OnJumphold(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
+        void OnFlip(InputAction.CallbackContext context);
     }
 }

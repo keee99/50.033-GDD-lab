@@ -1,0 +1,46 @@
+{
+    "name": "PerspectiveControl",
+    "maps": [
+        {
+            "name": "gameplay",
+            "id": "cd51d6d0-9dc2-4953-a185-3458a948f12b",
+            "actions": [
+                {
+                    "name": "Flip",
+                    "type": "Button",
+                    "id": "f10e9079-b580-4075-a053-c7eb337cb0c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b9d59e5d-50fa-4b0e-9daf-d6e229c64cf7",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PerspectiveFlip",
+                    "action": "Flip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PerspectiveFlip",
+            "bindingGroup": "PerspectiveFlip",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
