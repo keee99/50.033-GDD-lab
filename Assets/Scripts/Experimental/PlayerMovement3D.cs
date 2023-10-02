@@ -215,7 +215,7 @@ public class PlayerMovement3D : MonoBehaviour
         Vector3 movement = new Vector3(0, 0, -value);
         // Limit mario to max speed
         // if (marioBody.velocity.magnitude < maxSpeed)
-        if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
+        if (Mathf.Abs(marioBody.velocity.magnitude) < maxSpeed)
         {
             marioBody.AddForce(movement * speed);
         }
@@ -227,7 +227,7 @@ public class PlayerMovement3D : MonoBehaviour
         Debug.Log("Y: " + movement);
         // Limit mario to max speed
         // if (marioBody.velocity.magnitude < maxSpeed)
-        if (Mathf.Abs(marioBody.velocity.z) < maxSpeed)
+        if (Mathf.Abs(marioBody.velocity.magnitude) < maxSpeed)
         {
             marioBody.AddForce(movement * speed);
         }
