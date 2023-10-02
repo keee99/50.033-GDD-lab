@@ -13,6 +13,8 @@ public class ActionManager : MonoBehaviour
     public UnityEvent jumphold;
     public UnityEvent<int> moveCheck;
 
+    public UnityEvent<int> moveYCheck;
+
     public void OnJumpHoldAction(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -60,6 +62,21 @@ public class ActionManager : MonoBehaviour
         {
             // Debug.Log("Move canceled");
             moveCheck.Invoke(0);
+        }
+    }
+
+    public void OnMoveYAction(InputAction.CallbackContext context)
+    {
+        Debug.Log("Move Start");
+        if (context.started)
+        {
+            int moving = context.ReadValue<float>() > 0 ? 1 : -1;
+            moveYCheck.Invoke(moving);
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("Move canceled");
+            moveYCheck.Invoke(0);
         }
     }
 

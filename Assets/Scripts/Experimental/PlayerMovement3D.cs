@@ -8,9 +8,9 @@ public class PlayerMovement3D : MonoBehaviour
 
     // STATE
     private bool onGroundState = true;
-    public float speed = 17f;
-    public float maxSpeed = 25f;
-    public float upSpeed = 20;
+    public float speed = 5f;
+    public float maxSpeed = 7f;
+    public float upSpeed = 10;
     public bool isSpriteFacingRight = true;
 
 
@@ -41,6 +41,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     // Lab 3
     private bool moving = false;
+    private bool movingY = false;
+    private bool isGoingUp = true;
     private bool jumpedState = false;
 
 
@@ -65,6 +67,10 @@ public class PlayerMovement3D : MonoBehaviour
         {
             Move(isSpriteFacingRight == true ? 1 : -1);
         }
+        if (alive && movingY)
+        {
+            MoveY(isGoingUp == true ? 1 : -1);
+        }
     }
 
     // !!
@@ -74,7 +80,9 @@ public class PlayerMovement3D : MonoBehaviour
     {
         // Flip Mario sprite moved
 
-        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
+
+        marioAnimator.SetBool("isMoving", moving || movingY);
+
     }
 
     void FlipMarioSprite(int value)
@@ -96,6 +104,18 @@ public class PlayerMovement3D : MonoBehaviour
             {
                 marioAnimator.SetTrigger("onSkid");
             }
+        }
+    }
+
+    void FlipMarioY(int value)
+    {
+        if (value == -1 && isGoingUp)
+        {
+            isGoingUp = false;
+        }
+        else if (value == 1 && !isGoingUp)
+        {
+            isGoingUp = true;
         }
     }
 
@@ -134,23 +154,6 @@ public class PlayerMovement3D : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider2D other)
-    {
-
-    }
-
-    void Move(int value)
-    {
-        Vector2 movement = new Vector2(value, 0);
-
-        // Limit mario to max speed
-        // if (marioBody.velocity.magnitude < maxSpeed)
-        if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
-        {
-            marioBody.AddForce(movement * speed);
-        }
-    }
-
     public void Jump()
     {
         if (alive && onGroundState)
@@ -188,6 +191,44 @@ public class PlayerMovement3D : MonoBehaviour
             FlipMarioSprite(value);
             moving = true;
             Move(value);
+        }
+    }
+
+    public void MoveYCheck(int value)
+    {
+        if (value == 0)
+        {
+            movingY = false;
+        }
+        else
+        {
+            FlipMarioY(value);
+            movingY = true;
+            MoveY(value);
+        }
+    }
+
+    void Move(int value)
+    {
+        // Move in horizontal (z) direction
+        Vector3 movement = new Vector3(0, 0, -value);
+        // Limit mario to max speed
+        // if (marioBody.velocity.magnitude < maxSpeed)
+        if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
+        {
+            marioBody.AddForce(movement * speed);
+        }
+    }
+
+    void MoveY(int value)
+    {
+        Vector3 movement = new Vector3(value, 0, 0);
+        Debug.Log("Y: " + movement);
+        // Limit mario to max speed
+        // if (marioBody.velocity.magnitude < maxSpeed)
+        if (Mathf.Abs(marioBody.velocity.z) < maxSpeed)
+        {
+            marioBody.AddForce(movement * speed);
         }
     }
 
