@@ -52,7 +52,6 @@ public class PerspectiveManager : MonoBehaviour
         }
         else if (context.canceled && isPressed)
         {
-            Debug.Log("toggle");
             if (is2D)
             {
                 FlipTo3D();

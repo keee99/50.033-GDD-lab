@@ -158,7 +158,6 @@ public class PlayerMovement3D : MonoBehaviour
         if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
         {
             // If colliding the enemy from the top, kill the enemy, else kill mario
-            Debug.Log(other.contacts[0].normal);
             if (other.contacts[0].normal.y > 0)
             {
                 other.gameObject.GetComponent<EnemyDeath3D>().Death();
@@ -269,7 +268,6 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void Reset()
     {
-        Debug.Log("Call");
         marioBody.transform.position = initialPosition;
         marioBody.velocity = Vector3.zero;
 

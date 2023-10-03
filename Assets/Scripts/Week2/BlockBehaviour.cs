@@ -63,8 +63,6 @@ public class BlockBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-
-        // Debug.Log(other.GetContact(0).point);
         if (other.gameObject.CompareTag("Player") && isCollisionFromBottom && !isBroken)
         {
             BreakBlock();
