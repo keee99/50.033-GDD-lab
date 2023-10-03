@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement3D : MonoBehaviour
 {
 
     private float originalX;
@@ -10,11 +10,13 @@ public class EnemyMovement : MonoBehaviour
     private float enemyPatrolTime = 3.0f;
     public int moveRightInitial = -1;
     public int moveRightState;
-    private Vector2 velocity;
+    private Vector3 velocity;
 
-    private Rigidbody2D enemyBody;
+    private Rigidbody enemyBody;
 
-    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
+    private Vector3 startPosition;
+
+    public bool stopped;
 
 
     // Start is called before the first frame update
@@ -23,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
         startPosition = transform.localPosition;
 
-        enemyBody = GetComponent<Rigidbody2D>();
+        enemyBody = GetComponent<Rigidbody>();
         originalX = transform.position.x;
         moveRightState = moveRightInitial;
         ComputeVelocity();
@@ -38,13 +40,18 @@ public class EnemyMovement : MonoBehaviour
 
     void MoveGoomba()
     {
-        Vector2 deltaX = velocity * Time.fixedDeltaTime;
+        Vector3 deltaX = velocity * Time.fixedDeltaTime;
         enemyBody.MovePosition(enemyBody.position + deltaX);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (stopped)
+        {
+            return;
+        }
+
         // If not yet in the max offset
         if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
         {
@@ -66,6 +73,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void ResetMovement()
     {
+        stopped = false;
         moveRightState = moveRightInitial;
         ComputeVelocity();
     }
@@ -73,5 +81,10 @@ public class EnemyMovement : MonoBehaviour
     private void ResetPosition()
     {
         transform.localPosition = startPosition;
+    }
+
+    public void Stop()
+    {
+        stopped = true;
     }
 }

@@ -35,6 +35,10 @@ public class CameraController3D : MonoBehaviour
         startPos = transform.position;
         startY = transform.position.y;
 
+        Vector3 target = player.position;
+        target.y += 1.5f;
+
+        transform.LookAt(target);
         startRot = transform.rotation;
     }
 
@@ -56,7 +60,7 @@ public class CameraController3D : MonoBehaviour
         // Rotate to look at player
         Vector3 target = player.position;
         target.y += 1.5f;
-        transform.LookAt(target);
+
 
     }
 

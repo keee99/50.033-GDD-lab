@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyDeath : MonoBehaviour
+public class EnemyDeath3D : MonoBehaviour
 {
 
     private readonly string TAG_PLAYER = "Player";
     bool alive = true;
 
     Animator animator;
-    Rigidbody2D rb;
+    Rigidbody rb;
     AudioSource enemyDeathSound;
 
     public UnityEvent death;
-
 
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         enemyDeathSound = GetComponent<AudioSource>();
 
     }
@@ -49,14 +48,14 @@ public class EnemyDeath : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Death2D()
+    public void Death3D()
     {
         PlayDeathSound();
         gameObject.tag = "Obstacles";
-        rb.bodyType = RigidbodyType2D.Static;
+        gameObject.GetComponent<EnemyMovement3D>().Stop();
+        rb.velocity = Vector3.zero;
         animator.SetTrigger("death");
         alive = false;
-
     }
 
     public void Death()
@@ -64,11 +63,11 @@ public class EnemyDeath : MonoBehaviour
         death.Invoke();
     }
 
+
     public void Reset()
     {
-        gameObject.SetActive(true);
         gameObject.tag = "Enemy";
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        gameObject.SetActive(true);
         alive = true;
         animator.Play("GoombaWalk");
 

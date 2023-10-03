@@ -67,7 +67,6 @@ public class ActionManager : MonoBehaviour
 
     public void OnMoveYAction(InputAction.CallbackContext context)
     {
-        Debug.Log("Move Start");
         if (context.started)
         {
             int moving = context.ReadValue<float>() > 0 ? 1 : -1;
@@ -75,7 +74,6 @@ public class ActionManager : MonoBehaviour
         }
         else if (context.canceled)
         {
-            Debug.Log("Move canceled");
             moveYCheck.Invoke(0);
         }
     }

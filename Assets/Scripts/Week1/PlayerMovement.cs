@@ -110,7 +110,8 @@ public class PlayerMovement : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
-        else if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
+
+        if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
         {
             // If colliding the enemy from the top, kill the enemy, else kill mario
 
@@ -248,7 +249,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void FlipMario()
     {
-        Debug.Log("ASDDA");
         mario3D.SetActive(true);
         mario3D.GetComponent<PlayerMovement3D>().SpawnMario3D(marioBody.transform.position.x, marioBody.transform.position.y);
         gameObject.SetActive(false);

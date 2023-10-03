@@ -38,6 +38,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
+    int pitLayerMask = 1 << 8;
+
 
     // Lab 3
     private bool moving = false;
@@ -46,6 +48,9 @@ public class PlayerMovement3D : MonoBehaviour
     private bool jumpedState = false;
 
     public GameObject mario2D;
+
+
+    private Vector3 initialPosition;
 
 
     // Start is called before the first frame update
@@ -60,6 +65,8 @@ public class PlayerMovement3D : MonoBehaviour
         marioAnimator.SetBool("onGround", onGroundState);
 
         gameObject.SetActive(false);
+
+        initialPosition = marioBody.transform.position;
 
     }
 
@@ -95,6 +102,7 @@ public class PlayerMovement3D : MonoBehaviour
         marioBody.transform.position = new Vector3(x, y, 4.16f);
         marioBody.velocity = Vector3.zero;
         marioAnimator.SetTrigger("gameRestart");
+        Jump();
     }
 
     public void FlipMario()
@@ -147,19 +155,27 @@ public class PlayerMovement3D : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
-        else if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
+        if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
         {
             // If colliding the enemy from the top, kill the enemy, else kill mario
-
-            if (other.contacts[0].normal.y < 0)
+            Debug.Log(other.contacts[0].normal);
+            if (other.contacts[0].normal.y > 0)
             {
-                other.gameObject.GetComponent<EnemyDeath>().Death();
+                other.gameObject.GetComponent<EnemyDeath3D>().Death();
             }
             else
             {
                 Death();
             }
 
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (pitLayerMask == (1 << other.transform.gameObject.layer) && alive)
+        {
+            Death();
         }
     }
 
@@ -253,7 +269,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void Reset()
     {
-        marioBody.transform.position = new Vector3(-4.46f, -2.5f, 0.0f);
+        Debug.Log("Call");
+        marioBody.transform.position = initialPosition;
         marioBody.velocity = Vector3.zero;
 
         GetComponent<Collider>().enabled = true;
@@ -275,7 +292,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void Death()
     {
-        // marioBody.bodyType = RigidbodyType2D.Static;
+        marioBody.useGravity = false;
+        marioBody.velocity = Vector3.zero;
         marioAnimator.Play("mario-die");
         marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
         Jump();
@@ -284,9 +302,9 @@ public class PlayerMovement3D : MonoBehaviour
 
     void PlayDeathImpulse()
     {
-        // marioBody.bodyType = RigidbodyType2D.Dynamic;
-        GetComponent<Collider>().enabled = false;
-        marioBody.AddForce(Vector2.up * deathImpulse, ForceMode.Impulse);
+        marioBody.useGravity = true;
+        marioBody.mass = 1;
+        marioBody.AddForce(new Vector3(0, 1, 0) * deathImpulse, ForceMode.Impulse);
     }
 
     void InvokeGameOver()
