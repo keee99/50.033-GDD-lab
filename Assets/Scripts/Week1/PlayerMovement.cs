@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         marioAnimator.SetBool("onGround", onGroundState);
 
-        SceneManager.activeSceneChanged += SetStartingPosition;
+        // SceneManager.activeSceneChanged += SetStartingPosition;
         startingPosition = transform.position;
 
     }
@@ -66,16 +66,21 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         GameManager.Instance.gameRestart.AddListener(Reset);
+
+        ActionManager actionManager = GetComponent<ActionManager>();
+        actionManager.jump.AddListener(Jump);
+        actionManager.jumphold.AddListener(JumpHold);
+        actionManager.moveCheck.AddListener(MoveCheck);
     }
 
-    public void SetStartingPosition(Scene current, Scene next)
-    {
-        if (next.name == "1-2")
-        {
-            transform.position = new Vector3(-6.25f, -17.32f, 0.0f);
-            startingPosition = transform.position;
-        }
-    }
+    // public void SetStartingPosition(Scene current, Scene next)
+    // {
+    //     if (next.name == "1-2")
+    //     {
+    //         transform.position = new Vector3(-6.25f, -17.32f, 0.0f);
+    //         startingPosition = transform.position;
+    //     }
+    // }
 
     // FixedUpdate is called 50 times a second. 
     // Place physics engine stuff here: same frequency as the physics system
