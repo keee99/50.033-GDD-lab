@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     public UnityEvent gameStart;
@@ -13,21 +13,6 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
 
-    // A static reference to the GameManager instance
-    public static GameManager Instance;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
-            Instance = this;
-        }
-        else if (Instance != this) // If there is already an instance and it's not `this` instance
-        {
-            Destroy(gameObject); // Destroy the GameObject, this component is attached to
-        }
-    }
 
     // Start is called before the first frame update
     void Start()

@@ -17,7 +17,7 @@ TagManager:
   - UI
   - Enemies
   - Obstacles
-  - 
+  - Interactive
   - 
   - 
   - 
@@ -42,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: back
+    uniqueID: 2908305893
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: top
+    uniqueID: 1569849101
     locked: 0

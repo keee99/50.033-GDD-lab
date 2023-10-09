@@ -32,7 +32,15 @@ public class HUDManager : MonoBehaviour
 
     private void toggleGameOverUI(bool toggle)
     {
-        gameOverOverlay.enabled = toggle;
+        gameOverOverlay.gameObject.SetActive(toggle);
 
+    }
+
+    void Awake()
+    {
+        GameManager.Instance.gameRestart.AddListener(GameStart);
+        GameManager.Instance.gameStart.AddListener(GameStart);
+        GameManager.Instance.gameOver.AddListener(GameOver);
+        GameManager.Instance.scoreChange.AddListener(SetScore);
     }
 }

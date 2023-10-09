@@ -12,4 +12,9 @@ public class EnemyManager : MonoBehaviour
             child.GetChild(0).GetComponentInChildren<EnemyDeath>().Reset();
         }
     }
+
+    void Awake()
+    {
+        GameManager.Instance.gameRestart.AddListener(ResetEnemies);
+    }
 }

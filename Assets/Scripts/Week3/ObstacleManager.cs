@@ -20,4 +20,9 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        GameManager.Instance.gameRestart.AddListener(ResetObstacles);
+    }
+
 }

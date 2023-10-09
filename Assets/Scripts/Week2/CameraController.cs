@@ -11,8 +11,13 @@ public class CameraController : MonoBehaviour
     private float endX; // largest x-coordinate of the camera
     private float viewportHalfWidth;
 
+    private Vector3 startingPosition;
+
     private void Start()
     {
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         // Get coords of the bottomleft of viewport to find width of camera viewport
         // 0,0,0 is the camera viewport's local bottom left corner 
         // the z-component is the distance of the resulting plane from the camera 
@@ -21,6 +26,8 @@ public class CameraController : MonoBehaviour
         offset = transform.position.x - player.position.x;
         startX = transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
+
+        startingPosition = transform.position;
     }
 
     private void Update()
@@ -36,6 +43,11 @@ public class CameraController : MonoBehaviour
 
     public void Reset()
     {
-        transform.position = new Vector3(0.34f, 2f, -10f); ;
+        transform.position = startingPosition;
+    }
+
+    private void Awake()
+    {
+        GameManager.Instance.gameRestart.AddListener(Reset);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
     private bool moving = false;
     private bool jumpedState = false;
 
+    private Vector3 startingPosition;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,23 @@ public class PlayerMovement : MonoBehaviour
 
         marioAnimator.SetBool("onGround", onGroundState);
 
+        SceneManager.activeSceneChanged += SetStartingPosition;
+        startingPosition = transform.position;
+
+    }
+
+    void Awake()
+    {
+        GameManager.Instance.gameRestart.AddListener(Reset);
+    }
+
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        if (next.name == "1-2")
+        {
+            transform.position = new Vector3(-6.25f, -17.32f, 0.0f);
+            startingPosition = transform.position;
+        }
     }
 
     // FixedUpdate is called 50 times a second. 
@@ -194,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Reset()
     {
-        marioBody.transform.position = new Vector3(-4.46f, -2.5f, 0.0f);
+        marioBody.transform.position = startingPosition;
         marioBody.velocity = Vector3.zero;
 
         GetComponent<Collider2D>().enabled = true;
