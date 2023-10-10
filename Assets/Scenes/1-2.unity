@@ -1145,13 +1145,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 731968257130899379, guid: 5fd1a8882fa20f544903c129c9cfb1a7, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307417254078383445, guid: 5fd1a8882fa20f544903c129c9cfb1a7, type: 3}
-      propertyPath: m_Layer
-      value: 0
+    - target: {fileID: 1872591667593331128, guid: 5fd1a8882fa20f544903c129c9cfb1a7, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6741684518627303811, guid: 5fd1a8882fa20f544903c129c9cfb1a7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1197,6 +1193,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: qblock_mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 8447431640908410182, guid: 5fd1a8882fa20f544903c129c9cfb1a7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2463038519fec3b41aa04073ddb28e2c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
