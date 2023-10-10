@@ -12,9 +12,7 @@ public class SuperMushroomPowerupImpl : BasePowerup
     protected override void Start()
     {
         base.Start(); // call base class Start()
-        rb.bodyType = RigidbodyType2D.Static;
         type = PowerupType.SuperMushroom;
-        Debug.Log(goRight);
     }
 
 
@@ -43,7 +41,6 @@ public class SuperMushroomPowerupImpl : BasePowerup
 
     public override void SpawnPowerUp()
     {
-        rb.bodyType = RigidbodyType2D.Dynamic;
         spawned = true;
         rb.AddForce(Vector2.right * 3, ForceMode2D.Impulse);
     }

@@ -24,17 +24,17 @@ public class EnemyDeath : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        // If the enemy collides with the player from the top, call the Death() function
-        if (other.gameObject.CompareTag(TAG_PLAYER) && alive)
-        {
-            if (other.contacts[0].normal.y < 0)
-            {
-                Death();
-            }
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     // If the enemy collides with the player from the top, call the Death() function
+    //     if (other.gameObject.CompareTag(TAG_PLAYER) && alive)
+    //     {
+    //         if (other.contacts[0].normal.y < 0)
+    //         {
+    //             Death();
+    //         }
+    //     }
+    // }
 
     public void PlayDeathSound()
     {
