@@ -4,14 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 {
 
+    public GameConstants gameConstants;
     // STATE
+    public float speed;
+    public float maxSpeed;
+    public float upSpeed;
+    public float deathImpulse = 50;
+
     private bool onGroundState = true;
-    public float speed = 17f;
-    public float maxSpeed = 25f;
-    public float upSpeed = 20;
     public bool isSpriteFacingRight = true;
 
 
@@ -35,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
     [System.NonSerialized] public bool alive = true;
-    public float deathImpulse = 50;
 
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
@@ -50,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        upSpeed = gameConstants.upSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
@@ -58,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
 
         marioAnimator.SetBool("onGround", onGroundState);
 
-        // SceneManager.activeSceneChanged += SetStartingPosition;
         startingPosition = transform.position;
 
     }
@@ -129,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (((collisionLayerMask & (1 << other.transform.gameObject.layer)) > 0) & !onGroundState)
         {
-            Debug.Log("ASD");
             onGroundState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
@@ -259,7 +265,8 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.GameOver();
     }
 
-
-
-
+    public void RequestPowerUpEffect(IPowerup powerup)
+    {
+        // throw new System.NotImplementedException();
+    }
 }

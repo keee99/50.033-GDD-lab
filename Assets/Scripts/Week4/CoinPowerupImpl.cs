@@ -15,7 +15,7 @@ public class CoinPowerupImpl : BasePowerup
     public override void SpawnPowerUp()
     {
         spawned = true;
-        ApplyPowerUp(null);
+        ApplyPowerUp(this);
     }
 
     public override void ApplyPowerUp(MonoBehaviour target)

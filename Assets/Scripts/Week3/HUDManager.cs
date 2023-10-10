@@ -12,6 +12,9 @@ public class HUDManager : MonoBehaviour
     // Restart Game related
     public TextMeshProUGUI overlayScoreText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highscoreText;
+
+    public IntVariable gameScore;
 
     public void SetScore(int score)
     {
@@ -33,6 +36,7 @@ public class HUDManager : MonoBehaviour
     private void toggleGameOverUI(bool toggle)
     {
         gameOverOverlay.gameObject.SetActive(toggle);
+        highscoreText.GetComponent<TextMeshProUGUI>().text = "High-score: " + gameScore.previousHighestValue.ToString("D6");
 
     }
 

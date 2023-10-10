@@ -2213,6 +2213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 719238337857793884, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
+      propertyPath: gameScore
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a076c8939d11ff4db6c8f1aa4903110, type: 2}
     - target: {fileID: 4687749828541577172, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2274,6 +2278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3258007958226624399, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
+      propertyPath: gameConstants
+      value: 
+      objectReference: {fileID: 11400000, guid: abe5d011d71dcc84e944fe9b18128d11, type: 2}
     - target: {fileID: 4135139194313781372, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
       propertyPath: enemyLocation
       value: 
@@ -2379,6 +2387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7578208682384675341, guid: 88bede2e5e3530a47946262c82244bb3, type: 3}
+      propertyPath: gameScore
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a076c8939d11ff4db6c8f1aa4903110, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -181,7 +181,7 @@ MonoBehaviour:
   useInt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7578208682384675341, guid: 88bede2e5e3530a47946262c82244bb3, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: IncreaseScore
         m_Mode: 0
