@@ -12,6 +12,7 @@ public class SuperMushroomPowerupImpl : BasePowerup
     protected override void Start()
     {
         base.Start(); // call base class Start()
+        spawned = false;
         type = PowerupType.SuperMushroom;
     }
 

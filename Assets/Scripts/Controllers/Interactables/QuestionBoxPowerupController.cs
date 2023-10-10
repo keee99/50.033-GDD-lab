@@ -8,9 +8,12 @@ public class QuestionBoxPowerupController : MonoBehaviour
     private Animator questionBoxAnimator;
     public BasePowerup powerup;
 
+    private bool broken;
+
     private void Start()
     {
         questionBoxAnimator = GetComponent<Animator>();
+        broken = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -19,8 +22,9 @@ public class QuestionBoxPowerupController : MonoBehaviour
         {
 
             // If collision from below
-            if (other.contacts[0].normal.y > 0)
+            if (other.contacts[0].normal.y > 0 && !broken)
             {
+                broken = true;
                 questionBoxAnimator.SetTrigger("broken");
                 powerupAnimator.SetTrigger("spawned");
             }
