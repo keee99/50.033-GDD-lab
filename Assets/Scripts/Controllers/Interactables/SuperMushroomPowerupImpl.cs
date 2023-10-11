@@ -78,6 +78,16 @@ public class SuperMushroomPowerupImpl : BasePowerup
     }
 
 
+    public override void Reset()
+    {
+        base.Reset();
+        gogogo = false;
+        rb.bodyType = RigidbodyType2D.Static;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponentInChildren<Animator>().SetTrigger("reset");
+        transform.localPosition = new Vector3(0, 1, 0);
+
+    }
 
     public override void ApplyPowerUp(MonoBehaviour target)
     {

@@ -12,7 +12,11 @@ public class NextScene : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            currentWorld.Value++;
+            currentWorld.Value = currentWorld.Value + 1;
+            if (currentWorld.Value > 2)
+            {
+                SceneManager.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single);
+            }
             SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Single);
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestionBoxPowerupController : MonoBehaviour
+public class QuestionBoxPowerupController : Resettable
 {
     public Animator powerupAnimator;
     private Animator questionBoxAnimator;
@@ -44,10 +44,19 @@ public class QuestionBoxPowerupController : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
-    public void Reset()
+    public override void Reset()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         questionBoxAnimator.SetTrigger("reset");
         powerupAnimator.SetTrigger("reset");
+        RegeneratePowerUp();
+
+        broken = false;
+
+    }
+
+    public void RegeneratePowerUp()
+    {
+        powerup.Reset();
     }
 }

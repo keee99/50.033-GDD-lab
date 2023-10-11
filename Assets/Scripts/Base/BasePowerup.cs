@@ -30,7 +30,17 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
 
     public void DestroyPowerUp()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public virtual void Reset()
+    {
+        gameObject.SetActive(true);
+        spawned = false;
+        consumed = false;
+        goRight = true;
+        transform.localPosition = new Vector3(0, 1, 0);
     }
 
 

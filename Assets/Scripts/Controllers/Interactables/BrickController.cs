@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrickController : MonoBehaviour
+public class BrickController : Resettable
 {
     private Animator brickAnimator;
 
@@ -40,9 +40,9 @@ public class BrickController : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
-    public virtual void Reset()
+    public override void Reset()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         brickAnimator.SetTrigger("reset");
     }
 }

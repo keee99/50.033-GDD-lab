@@ -972,7 +972,6 @@ GameObject:
   - component: {fileID: 6448717185933993987}
   - component: {fileID: 7014521879982935332}
   - component: {fileID: 7253666652465751554}
-  - component: {fileID: 6030961066303768784}
   - component: {fileID: 4029995603488824766}
   m_Layer: 5
   m_Name: ContinueButton
@@ -1083,8 +1082,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6030961066303768784}
-        m_TargetAssemblyTypeName: StartButton, Assembly-CSharp
+      - m_Target: {fileID: 3339832759085759731}
+        m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
         m_MethodName: ButtonClick
         m_Mode: 1
         m_Arguments:
@@ -1095,20 +1094,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6030961066303768784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2181937075040769513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1530f32ff8a60424cb676e0eef9d112f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWorld: {fileID: 11400000, guid: aae8bcf1d96afda41b3daf31ef14d0ac, type: 2}
-  score: {fileID: 11400000, guid: 4a076c8939d11ff4db6c8f1aa4903110, type: 2}
 --- !u!82 &4029995603488824766
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1352,6 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b495450bda29d044583215a8f1f08d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: b43f680f031c8c14c851333f9a9053a5, type: 2}
   pauseIcon: {fileID: 21300000, guid: f127afd46e3482f42914165cc5436789, type: 3}
   playIcon: {fileID: 21300000, guid: b8e7f56f13cd4a347acf18e6060d25f8, type: 3}
   pauseOverlay: {fileID: 6342331873981922844}
@@ -2239,9 +2225,8 @@ GameObject:
   - component: {fileID: 926527580436655590}
   - component: {fileID: 4393588963890553315}
   - component: {fileID: 4084914363017274709}
-  - component: {fileID: 2038626221642127148}
   - component: {fileID: 7382900396189447901}
-  - component: {fileID: 6328254414343104375}
+  - component: {fileID: 7014711746137812967}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2351,8 +2336,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2038626221642127148}
-        m_TargetAssemblyTypeName: StartButton, Assembly-CSharp
+      - m_Target: {fileID: 7014711746137812967}
+        m_TargetAssemblyTypeName: BackButton, Assembly-CSharp
         m_MethodName: ButtonClick
         m_Mode: 1
         m_Arguments:
@@ -2363,20 +2348,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2038626221642127148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703982126927264232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1530f32ff8a60424cb676e0eef9d112f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWorld: {fileID: 11400000, guid: aae8bcf1d96afda41b3daf31ef14d0ac, type: 2}
-  score: {fileID: 11400000, guid: 4a076c8939d11ff4db6c8f1aa4903110, type: 2}
 --- !u!82 &7382900396189447901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2473,7 +2444,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6328254414343104375
+--- !u!114 &7014711746137812967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2482,7 +2453,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7703982126927264232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c4842bc2b922d46bd419031ec5559a, type: 3}
+  m_Script: {fileID: 11500000, guid: c5ee12464722ec249af62772cb5f2975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7843860976565076699

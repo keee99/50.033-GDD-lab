@@ -23,5 +23,12 @@ public class BrickPowerupController : BrickController
     {
         base.Reset();
         powerupAnimator.SetTrigger("reset");
+        RegeneratePowerUp();
+        broken = false;
+    }
+
+    public void RegeneratePowerUp()
+    {
+        powerup.Reset();
     }
 }

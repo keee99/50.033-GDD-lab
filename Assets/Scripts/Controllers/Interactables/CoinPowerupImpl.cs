@@ -9,13 +9,19 @@ public class CoinPowerupImpl : BasePowerup
     {
         base.Start(); // call base class Start()
         rb.bodyType = RigidbodyType2D.Static;
-        type = PowerupType.SuperMushroom;
+        type = PowerupType.Coin;
     }
 
     public override void SpawnPowerUp()
     {
         spawned = true;
         ApplyPowerUp(this);
+    }
+
+    public override void Reset()
+    {
+        base.Reset();
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     public override void ApplyPowerUp(MonoBehaviour target)
