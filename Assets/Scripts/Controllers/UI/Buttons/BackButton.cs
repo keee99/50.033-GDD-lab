@@ -10,6 +10,7 @@ public class BackButton : MonoBehaviour
     {
         // TODO: Call a reset here
         // Reset timescale, mixer
+        GameManager.Instance.Reset();
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single);
     }

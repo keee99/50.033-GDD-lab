@@ -16,6 +16,7 @@ public class LoadingScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<AudioSource>().Play();
         scoreText.text = "SCORE: " + score.Value;
         hiScoreText.text = "HI-SCORE: " + score.previousHighestValue.ToString("D6");
         worldText.text = "WORLD: 1-" + currentWorld.Value;

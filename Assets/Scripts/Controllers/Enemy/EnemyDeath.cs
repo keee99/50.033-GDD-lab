@@ -53,6 +53,7 @@ public class EnemyDeath : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
         alive = false;
+        GameManager.Instance.IncreaseScore(1);
 
     }
 
@@ -60,11 +61,11 @@ public class EnemyDeath : MonoBehaviour
     {
         gameObject.tag = "Enemy";
         gameObject.SetActive(true);
-        rb.bodyType = RigidbodyType2D.Kinematic;
         alive = true;
         animator.Play("GoombaWalk");
 
     }
+
 
 
 }

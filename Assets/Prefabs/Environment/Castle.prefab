@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7009719720640871653}
   - component: {fileID: 4841070309602784988}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 9-Sliced (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,8 +154,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 1.8260765, y: -0.60027826}
-  - {x: 1.8506241, y: -2.457389}
+  - {x: 2.0936928, y: -0.9156835}
+  - {x: 2.0800095, y: -2.49562}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c8293f45ce23041b77cf0199820cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWorld: {fileID: 0}
   nextSceneName: 1-2
 --- !u!1 &7899859442214995619
 GameObject:
@@ -183,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2153402308296759406}
   - component: {fileID: 2708610989958999995}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: 9-Sliced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
