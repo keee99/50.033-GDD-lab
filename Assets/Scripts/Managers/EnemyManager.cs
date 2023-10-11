@@ -33,20 +33,22 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        Debug.Log("Spawn");
         SpawnEnemies(true);
     }
 
     public void SpawnEnemies(bool incre)
     {
+        // // Debugging Purposes
+        // currentWorld.Value = 0; 
+
         if (enemyLocations.goombaLocations.Length == 0 || currentWorld.Value <= 2)
         {
             InitEnemies();
         }
         else if (incre && enemyLocations.goombaLocations.Length != currentWorld.Value)
         {
-            Debug.Log("Increment Enemies!");
             int increment = currentWorld.Value;
+            Debug.Log("Increment Enemies by " + increment + "!");
             AddEnemyLocations(increment);
         }
 

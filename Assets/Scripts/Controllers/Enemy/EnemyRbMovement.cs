@@ -43,8 +43,7 @@ public class EnemyRbMovement : MonoBehaviour
                 moveRightState = -moveRightState;
                 bool goRight = -moveRightState < 0;
                 GetComponentInChildren<SpriteRenderer>().flipX = goRight;
-                Debug.Log(enemyBody);
-                enemyBody.AddForce(Vector2.right * 3 * (goRight ? 1 : -1), ForceMode2D.Impulse);
+                // enemyBody.AddForce(Vector2.right * 3 * (goRight ? 1 : -1), ForceMode2D.Impulse);
                 ComputeVelocity();
             }
 
