@@ -46,7 +46,7 @@ public class QuestionBoxPowerupController : MonoBehaviour
 
     public void Reset()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         questionBoxAnimator.SetTrigger("reset");
         powerupAnimator.SetTrigger("reset");
     }
