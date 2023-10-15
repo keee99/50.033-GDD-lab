@@ -36,7 +36,7 @@ public class SuperMushroomPowerupImpl : BasePowerup
     {
         if (other.gameObject.CompareTag("Player") && hasSpawned)
         {
-            // ApplyPowerUp(other.gameObject.GetComponent<PowerupApplicable>());
+            ApplyPowerUp(other.gameObject.GetComponent<PowerupApplicable>());
             DestroyPowerUp();
         }
         else if ((collisionLayerMask & (1 << other.gameObject.layer)) > 0) // pipe layer
@@ -91,8 +91,11 @@ public class SuperMushroomPowerupImpl : BasePowerup
 
     }
 
-    public override void ApplyPowerUp(MonoBehaviour target)
+    public override void ApplyPowerUp(MonoBehaviour i)
     {
-        // throw new System.NotImplementedException();
+        PowerupApplicable target = i.GetComponent<PowerupApplicable>();
+        target.PlayPowerUpSound();
+        target.RequestPowerUpEffect(this);
+
     }
 }

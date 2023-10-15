@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5095886046443708680}
   - component: {fileID: 5763446551532353606}
   - component: {fileID: 22527392384390445}
+  - component: {fileID: 4323286443959027225}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -233,14 +234,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3627f15a78f2e4c40a6ce17b707adc51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConstants: {fileID: 0}
   speed: 150
   maxSpeed: 5
   upSpeed: 40
+  deathImpulse: 60
   isSpriteFacingRight: 1
   marioAnimator: {fileID: 943851533663388193}
   marioAudio: {fileID: 5631537570506183073}
   marioDeathAudio: {fileID: 3692674142740494108}
-  deathImpulse: 60
 --- !u!50 &1630942487892721344
 Rigidbody2D:
   serializedVersion: 4
@@ -610,3 +612,17 @@ PolygonCollider2D:
       - {x: 0.41733456, y: -0.37252665}
       - {x: 0.40625, y: 0.5}
   m_UseDelaunayMesh: 0
+--- !u!114 &4323286443959027225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638352099696825387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c52d8ccde2f174c8de7ac75d9bafbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpSound: {fileID: 8300000, guid: 26301d2e86e99420599e315297a825df, type: 3}
+  powerDownSound: {fileID: 8300000, guid: b520e6b32619c490a934225b9b162dc2, type: 3}

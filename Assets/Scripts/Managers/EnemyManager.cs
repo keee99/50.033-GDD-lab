@@ -80,6 +80,7 @@ public class EnemyManager : MonoBehaviour
     private void AddEnemyLocations(int increment)
     {
         Vector2[] newGoombaLocations = new Vector2[enemyLocations.goombaLocations.Length + increment];
+        Debug.Log(enemyLocations.goombaLocations.Length + increment);
 
         CopyEnemies(newGoombaLocations);
 

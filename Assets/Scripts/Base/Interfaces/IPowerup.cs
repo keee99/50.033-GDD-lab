@@ -13,6 +13,8 @@ public interface IPowerup
     bool hasSpawned { get; }
 
 
+
+
 }
 
 public interface IPowerupApplicable
