@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CoinPowerupImpl : BasePowerup
 {
+
+    public UnityEvent increaseScore;
 
     protected override void Start()
     {
@@ -26,6 +29,6 @@ public class CoinPowerupImpl : BasePowerup
 
     public override void ApplyPowerUp(MonoBehaviour target)
     {
-        GameManager.Instance.IncreaseScore(1);
+        increaseScore.Invoke();
     }
 }

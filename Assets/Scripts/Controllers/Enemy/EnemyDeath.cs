@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyDeath : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class EnemyDeath : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     AudioSource enemyDeathSound;
+
+    public UnityEvent increaseScore;
 
 
 
@@ -53,12 +56,13 @@ public class EnemyDeath : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
         alive = false;
-        GameManager.Instance.IncreaseScore(1);
+        increaseScore.Invoke();
 
     }
 
     public void Reset()
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         gameObject.tag = "Enemy";
         gameObject.SetActive(true);
         alive = true;

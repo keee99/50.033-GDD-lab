@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour, IPowerupApplicable
@@ -49,6 +50,9 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     private Vector3 startingPosition;
 
 
+    public UnityEvent gameOver;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,8 +76,6 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     void Awake()
     {
-        GameManager.Instance.gameRestart.AddListener(Reset);
-
         ActionManager actionManager = GetComponent<ActionManager>();
         actionManager.jump.AddListener(Jump);
         actionManager.jumphold.AddListener(JumpHold);
@@ -262,7 +264,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     void InvokeGameOver()
     {
-        GameManager.Instance.GameOver();
+        gameOver.Invoke();
     }
 
     public void RequestPowerUpEffect(IPowerup powerup)

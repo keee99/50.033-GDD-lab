@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class EnvManager : ResetterBaseClass
+public class EnvManager : MonoBehaviour
 {
-    public override void Reset()
+    public void Reset()
     {
-        base.Reset();
+        // base.Reset();
         ResetMixer();
     }
 

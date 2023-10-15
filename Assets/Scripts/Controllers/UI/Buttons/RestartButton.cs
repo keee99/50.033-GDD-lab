@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RestartButton : MonoBehaviour, IInteractiveButton
 {
+    public UnityEvent gameRestart;
     public void ButtonClick()
     {
-        GameManager.Instance.Reset();
+        gameRestart.Invoke();
+        Debug.Log("ASD");
     }
 }

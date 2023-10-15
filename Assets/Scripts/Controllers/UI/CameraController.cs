@@ -45,9 +45,4 @@ public class CameraController : MonoBehaviour
     {
         transform.position = startingPosition;
     }
-
-    private void Awake()
-    {
-        GameManager.Instance.gameRestart.AddListener(Reset);
-    }
 }

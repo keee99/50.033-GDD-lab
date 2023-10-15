@@ -28,7 +28,6 @@ public class GameManager : Singleton<GameManager>
     {
         gameScore.Value = 0;
         SetScore(gameScore.Value);
-        gameRestart.Invoke();
         Time.timeScale = 1.0f;
     }
 
@@ -46,7 +45,6 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         Time.timeScale = 0.0f;
-        gameOver.Invoke();
     }
 
     public void SceneSetup(Scene current, Scene next)
