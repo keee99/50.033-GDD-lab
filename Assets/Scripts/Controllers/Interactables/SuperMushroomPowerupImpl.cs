@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SuperMushroomPowerupImpl : BasePowerup
 {
@@ -9,6 +10,9 @@ public class SuperMushroomPowerupImpl : BasePowerup
     private bool gogogo = false;
 
     private int impulse = 4;
+
+    public UnityEvent<IPowerup> OnPowerupAffectsPlayer;
+    public UnityEvent<IPowerup> OnPowerupCollected;
 
     // setup this object's type
     // instantiate variables
@@ -36,7 +40,8 @@ public class SuperMushroomPowerupImpl : BasePowerup
     {
         if (other.gameObject.CompareTag("Player") && hasSpawned)
         {
-            ApplyPowerUp(other.gameObject.GetComponent<PowerupApplicable>());
+            OnPowerupAffectsPlayer.Invoke(this);
+            OnPowerupCollected.Invoke(this);
             DestroyPowerUp();
         }
         else if ((collisionLayerMask & (1 << other.gameObject.layer)) > 0) // pipe layer
@@ -93,9 +98,7 @@ public class SuperMushroomPowerupImpl : BasePowerup
 
     public override void ApplyPowerUp(MonoBehaviour i)
     {
-        PowerupApplicable target = i.GetComponent<PowerupApplicable>();
-        target.PlayPowerUpSound();
-        target.RequestPowerUpEffect(this);
-
+        // TODO: Implement
+        Debug.Log("APPLY");
     }
 }

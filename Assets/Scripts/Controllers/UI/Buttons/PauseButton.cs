@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -21,6 +22,10 @@ public class PauseButton : MonoBehaviour, IInteractiveButton
 
     public Canvas pauseOverlay;
 
+
+    public UnityEvent onGamePause;
+    public UnityEvent onGameResume;
+
     void Start()
     {
         image = GetComponent<Image>();
@@ -34,17 +39,20 @@ public class PauseButton : MonoBehaviour, IInteractiveButton
     {
         PlaySound();
         isPaused = !isPaused;
+
         Time.timeScale = isPaused ? 0f : 1f;
         if (isPaused)
         {
-            marioActions.actions.Disable();
+            // marioActions.actions.Disable();
+            onGamePause.Invoke();
             togglePauseUI(true);
             softSnapShot.TransitionTo(0f);
         }
         else
         {
             togglePauseUI(false);
-            marioActions.actions.Enable();
+            // marioActions.actions.Enable();
+            onGameResume.Invoke();
             defaultSnapShot.TransitionTo(0f);
 
         }

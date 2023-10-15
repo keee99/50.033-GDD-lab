@@ -11,7 +11,8 @@ public class PowerupApplicable : MonoBehaviour, IPowerupApplicable
 
     public void RequestPowerUpEffect(IPowerup powerup)
     {
-        Debug.Log("power up effect: " + powerup.powerUpType.ToString());
+        Debug.Log("power up collected: " + powerup.powerUpType.ToString());
+        powerup.ApplyPowerUp(this);
     }
 
     public void PlayPowerUpSound()
@@ -22,9 +23,10 @@ public class PowerupApplicable : MonoBehaviour, IPowerupApplicable
         }
     }
 
-    private void Start()
+    public void OnPowerupCollected(IPowerup powerup)
     {
-
+        Debug.Log("Play");
+        PlayPowerUpSound();
     }
 
 }

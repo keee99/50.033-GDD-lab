@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour, IPowerupApplicable
+public class PlayerMovement : MonoBehaviour
 {
 
     public GameConstants gameConstants;
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
 
     public UnityEvent gameOver;
+    public UnityEvent OnDamageMario;
 
 
     // Start is called before the first frame update
@@ -82,6 +84,18 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         actionManager.moveCheck.AddListener(MoveCheck);
     }
 
+
+    public void OnGamePause()
+    {
+        PlayerInput marioActions = GetComponent<PlayerInput>();
+        marioActions.actions.Disable();
+    }
+
+    public void onGameResume()
+    {
+        PlayerInput marioActions = GetComponent<PlayerInput>();
+        marioActions.actions.Enable();
+    }
     // public void SetStartingPosition(Scene current, Scene next)
     // {
     //     if (next.name == "1-2")
@@ -151,7 +165,8 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
             }
             else
             {
-                Death();
+                OnDamageMario.Invoke();
+                Death(); // TODO: SHIFT OUT
             }
 
         }
@@ -265,10 +280,5 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     void InvokeGameOver()
     {
         gameOver.Invoke();
-    }
-
-    public void RequestPowerUpEffect(IPowerup powerup)
-    {
-        // throw new System.NotImplementedException();
     }
 }

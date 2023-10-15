@@ -1457,6 +1457,36 @@ MonoBehaviour:
   pauseIcon: {fileID: 21300000, guid: f127afd46e3482f42914165cc5436789, type: 3}
   playIcon: {fileID: 21300000, guid: b8e7f56f13cd4a347acf18e6060d25f8, type: 3}
   pauseOverlay: {fileID: 6342331873981922844}
+  onGamePause:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 361ee5d5245a8e94bac530d2cbefc107, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[UnityEngine.Object, UnityEngine
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGameResume:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f836d2414780e4e45aa067bd2f74a132, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[UnityEngine.Object, UnityEngine
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &2171746002359838516
 AudioSource:
   m_ObjectHideFlags: 0

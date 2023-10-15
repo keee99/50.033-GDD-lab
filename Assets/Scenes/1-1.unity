@@ -840,6 +840,78 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f49ac05f74a866449486238fe999ccc, type: 3}
+--- !u!1 &812922405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7638352099696825387, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
+  m_PrefabInstance: {fileID: 1600461302179905717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &812922415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3258007958226624399, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
+  m_PrefabInstance: {fileID: 1600461302179905717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812922405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3627f15a78f2e4c40a6ce17b707adc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &812922417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812922405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667e28f290b9fb74d96b8c212d5b9dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: f836d2414780e4e45aa067bd2f74a132, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 812922415}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: onGameResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &812922418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812922405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667e28f290b9fb74d96b8c212d5b9dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 361ee5d5245a8e94bac530d2cbefc107, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 812922415}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnGamePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &854395660
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,134 +996,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &859323667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 224826575757864836, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-  m_PrefabInstance: {fileID: 768011043908702601}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &859323668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859323667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 773cd5b2d6c47874e96926d23e1fd3df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b8bac67bae403e8438d76227b76b27d1, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 859323672}
-        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
-        m_MethodName: SetScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &859323669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859323667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667e28f290b9fb74d96b8c212d5b9dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 58b8224561a96d84aa5a119f8b143b43, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 859323672}
-        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
-        m_MethodName: GameOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &859323670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859323667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667e28f290b9fb74d96b8c212d5b9dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: a90f991e48fd3344e9e9e18ae794ee55, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 859323672}
-        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
-        m_MethodName: GameStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &859323671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859323667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667e28f290b9fb74d96b8c212d5b9dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1c12de7d84358b94c8e55138928f8ae1, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 859323672}
-        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
-        m_MethodName: GameStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &859323672 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 719238337857793884, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-  m_PrefabInstance: {fileID: 768011043908702601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859323667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6554920dc7784c5428568a782842465c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &907412680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,14 +2905,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 719238337857793884, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-      propertyPath: gameScore
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a076c8939d11ff4db6c8f1aa4903110, type: 2}
-    - target: {fileID: 3339832759085759731, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-      propertyPath: mixer
-      value: 
-      objectReference: {fileID: 24100000, guid: b43f680f031c8c14c851333f9a9053a5, type: 2}
     - target: {fileID: 4687749828541577172, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3020,19 +2956,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 224826575757864836, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 859323671}
-    - targetCorrespondingSourceObject: {fileID: 224826575757864836, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 859323670}
-    - targetCorrespondingSourceObject: {fileID: 224826575757864836, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 859323669}
-    - targetCorrespondingSourceObject: {fileID: 224826575757864836, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 859323668}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8488216f82bac7d439ae3124dd8890b9, type: 3}
 --- !u!1001 &1600461302179905717
 PrefabInstance:
@@ -3089,7 +3013,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7638352099696825387, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812922418}
+    - targetCorrespondingSourceObject: {fileID: 7638352099696825387, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812922417}
   m_SourcePrefab: {fileID: 100100000, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
 --- !u!1001 &2144591037858628441
 PrefabInstance:
