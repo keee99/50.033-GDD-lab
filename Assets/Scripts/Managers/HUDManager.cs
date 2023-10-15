@@ -41,12 +41,4 @@ public class HUDManager : MonoBehaviour
         highscoreText.GetComponent<TextMeshProUGUI>().text = "High-score: " + gameScore.previousHighestValue.ToString("D6");
 
     }
-
-    void Awake()
-    {
-        GameManager.Instance.gameRestart.AddListener(GameStart);
-        GameManager.Instance.gameStart.AddListener(GameStart);
-        GameManager.Instance.gameOver.AddListener(GameOver);
-        GameManager.Instance.scoreChange.AddListener(SetScore);
-    }
 }
