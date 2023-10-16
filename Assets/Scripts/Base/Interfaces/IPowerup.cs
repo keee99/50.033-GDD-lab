@@ -26,6 +26,9 @@ public enum PowerupType
 {
     Coin = 0,
     SuperMushroom = 1,
-    OneUpMusroom = 2,
+    OneUpMushroom = 2,
     Star = 3,
+    FireFlower = 4,
+    Damage = 99,
+    Default = -1
 }

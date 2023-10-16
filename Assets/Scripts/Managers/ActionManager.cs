@@ -13,6 +13,8 @@ public class ActionManager : MonoBehaviour
     public UnityEvent jumphold;
     public UnityEvent<int> moveCheck;
 
+    public UnityEvent attack;
+
     public void OnJumpHoldAction(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -86,6 +88,15 @@ public class ActionManager : MonoBehaviour
             Vector2 point = context.ReadValue<Vector2>();
             // Debug.Log($"Point detected at {point}");
         }
+    }
+
+    public void OnAttackAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            attack.Invoke();
+        }
+
     }
 
 

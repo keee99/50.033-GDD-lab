@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private bool onGroundState = true;
     public bool isSpriteFacingRight = true;
 
+    public BoolVariable marioFaceRight;
+
 
     // CACHE
     private Rigidbody2D marioBody;
@@ -129,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value == -1 && isSpriteFacingRight)
         {
-            isSpriteFacingRight = false;
+            updateFaceDirection(false);
             marioSprite.flipX = true;
             if (marioBody.velocity.x > 0.1f)
             {
@@ -138,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (value == 1 && !isSpriteFacingRight)
         {
-            isSpriteFacingRight = true;
+            updateFaceDirection(true);
             marioSprite.flipX = false;
             if (marioBody.velocity.x < -0.1f)
             {
@@ -166,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 OnDamageMario.Invoke();
-                Death(); // TODO: SHIFT OUT
+                // Death();
             }
 
         }
@@ -240,14 +242,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    private void updateFaceDirection(bool value)
+    {
+        isSpriteFacingRight = value;
+        marioFaceRight.SetValue(isSpriteFacingRight);
+    }
+
+
     public void Reset()
     {
         marioBody.transform.position = startingPosition;
         marioBody.velocity = Vector3.zero;
-
+        PlayerInput marioActions = GetComponent<PlayerInput>();
+        marioActions.actions.Enable();
         GetComponent<Collider2D>().enabled = true;
 
-        isSpriteFacingRight = true;
+        updateFaceDirection(true);
         marioSprite.flipX = false;
 
         marioAnimator.SetTrigger("gameRestart");
@@ -262,10 +272,32 @@ public class PlayerMovement : MonoBehaviour
         marioAudio.PlayOneShot(marioAudio.clip);
     }
 
-    public void Death()
+    public void DamageMario()
+    {
+        // Death(); // last time Mario dies right away
+
+        // pass this to StateController to see if Mario should start game over
+        // since both state StateController and MarioStateController are on the same gameobject, it's ok to cross-refer between scripts
+        GetComponent<MarioStateController>().SetPowerup(PowerupType.Damage);
+
+    }
+
+    // public void Death()
+    // {
+    //     marioBody.bodyType = RigidbodyType2D.Static;
+    //     marioAnimator.Play("mario-die");
+    //     marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+    //     alive = false;
+    // }
+
+    public void PlayDeath()
     {
         marioBody.bodyType = RigidbodyType2D.Static;
-        marioAnimator.Play("mario-die");
+        GetComponent<Collider2D>().enabled = false;
+
+        PlayerInput marioActions = GetComponent<PlayerInput>();
+        marioActions.actions.Disable();
+
         marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
         alive = false;
     }

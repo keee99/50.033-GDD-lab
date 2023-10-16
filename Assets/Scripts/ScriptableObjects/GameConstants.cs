@@ -18,4 +18,6 @@ public class GameConstants : ScriptableObject
     // Goomba's movement
     public float goombaPatrolTime; // 3.0f
     public float goombaMaxOffset; // 5f
+
+    public float flickerInterval;
 }
