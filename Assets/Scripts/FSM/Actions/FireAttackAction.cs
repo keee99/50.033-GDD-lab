@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableSM/Actions/FireAttack")]
 public class FireAttackAction : Action
 {
-    public int maxPrefabInScene = 6;
+    public int maxPrefabInScene = 3;
     public float impulseForce = 1000;
     public float degree = 30;
     public GameObject attackPrefab;

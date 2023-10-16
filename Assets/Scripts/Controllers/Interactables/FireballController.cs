@@ -36,6 +36,8 @@ public class FireballController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            GetComponent<Collider2D>().enabled = false;
             GetComponent<Animator>().SetTrigger("collide");
             // destroy self
             other.gameObject.GetComponent<EnemyDeath>().Death();
