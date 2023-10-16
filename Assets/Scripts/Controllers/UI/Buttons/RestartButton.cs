@@ -9,6 +9,5 @@ public class RestartButton : MonoBehaviour, IInteractiveButton
     public void ButtonClick()
     {
         gameRestart.Invoke();
-        Debug.Log("ASD");
     }
 }

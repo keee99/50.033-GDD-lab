@@ -32,7 +32,6 @@ public class HUDManager : MonoBehaviour
     {
         Time.timeScale = 0;
         toggleGameOverUI(true);
-        Debug.Log("ASDASD");
     }
 
     private void toggleGameOverUI(bool toggle)

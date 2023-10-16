@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Score
   - Obstacles
+  - FriendlyProjectile
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Enemies
   - Obstacles
   - Interactive
-  - 
-  - 
+  - FriendlyProjectiles
+  - Player
   - 
   - 
   - 

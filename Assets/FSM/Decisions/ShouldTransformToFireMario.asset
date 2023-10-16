@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773a5ff8b69a9d54a84387a302595479, type: 3}
   m_Name: ShouldTransformToFireMario
   m_EditorClassIdentifier: 
-  map: []
+  map:
+  - fromState: 1
+    powerupCollected: 4
