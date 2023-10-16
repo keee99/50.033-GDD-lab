@@ -100,5 +100,14 @@ public class SuperMushroomPowerupImpl : BasePowerup
     {
         // TODO: Implement
         Debug.Log("APPLY");
+
+        // base.ApplyPowerUp(i);
+
+        MarioStateController mario;
+        bool result = i.TryGetComponent<MarioStateController>(out mario);
+        if (result)
+        {
+            mario.SetPowerup(type);
+        }
     }
 }
