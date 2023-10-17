@@ -2668,32 +2668,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6741684518627303811, guid: 14f936530ee9fc44e89952301df3ca1c, type: 3}
   m_PrefabInstance: {fileID: 1391440028}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1776326825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7638352099696825387, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-  m_PrefabInstance: {fileID: 1600461302179905717}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1776326843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776326825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5bceab93e3f834b85ee27c1f8bc853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startState: {fileID: 11400000, guid: 59d04fcb3046c2745a076d16f908a9b5, type: 2}
-  previousState: {fileID: 0}
-  currentState: {fileID: 0}
-  remainState: {fileID: 11400000, guid: 5679cda6ea9db3b4ea89d35203a766a1, type: 2}
-  transitionStateChanged: 0
-  stateTimeElapsed: 0
-  currentBuffType: -1
-  shouldBeNextState: -1
-  gameConstants: {fileID: 11400000, guid: abe5d011d71dcc84e944fe9b18128d11, type: 2}
 --- !u!1 &1803238192
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,34 +3430,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1776326843}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: GameRestart
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: BuffStateController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807021343613685354, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7638352099696825387, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
       propertyPath: m_Name
       value: Mario
@@ -3491,10 +3437,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7638352099696825387, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1776326843}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c181802a4d8e8a74b92033e6c9e49f06, type: 3}
 --- !u!1001 &2144591037858628441
 PrefabInstance:

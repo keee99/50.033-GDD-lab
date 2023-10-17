@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 8371775283861041747}
   - component: {fileID: 3258007958226624399}
   - component: {fileID: 7884664844659846290}
+  - component: {fileID: 5343274651555594987}
   - component: {fileID: 1630942487892721344}
   - component: {fileID: 6278511728237285185}
   - component: {fileID: 943851533663388193}
@@ -251,6 +252,7 @@ MonoBehaviour:
   marioAnimator: {fileID: 943851533663388193}
   marioAudio: {fileID: 5631537570506183073}
   marioDeathAudio: {fileID: 3692674142740494108}
+  buffState: {fileID: 0}
   gameOver:
     m_PersistentCalls:
       m_Calls:
@@ -302,7 +304,29 @@ MonoBehaviour:
   currentPowerupType: -1
   shouldBeNextState: -1
   gameConstants: {fileID: 11400000, guid: abe5d011d71dcc84e944fe9b18128d11, type: 2}
-  marioCurrentState: {fileID: 11400000, guid: 1fad2258c6472de4092b66711a1312e4, type: 2}
+--- !u!114 &5343274651555594987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638352099696825387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5bceab93e3f834b85ee27c1f8bc853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startState: {fileID: 11400000, guid: 59d04fcb3046c2745a076d16f908a9b5, type: 2}
+  previousState: {fileID: 0}
+  currentState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 5679cda6ea9db3b4ea89d35203a766a1, type: 2}
+  transitionStateChanged: 0
+  stateTimeElapsed: 0
+  currentBuffType: -1
+  shouldBeNextState: -1
+  gameConstants: {fileID: 11400000, guid: abe5d011d71dcc84e944fe9b18128d11, type: 2}
+  mixer: {fileID: 24100000, guid: b43f680f031c8c14c851333f9a9053a5, type: 2}
+  starAudioClip: {fileID: 8300000, guid: fe80c79237cc34e99babbc6d54016d93, type: 3}
 --- !u!50 &1630942487892721344
 Rigidbody2D:
   serializedVersion: 4
@@ -735,6 +759,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7884664844659846290}
         m_TargetAssemblyTypeName: MarioStateController, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5343274651555594987}
+        m_TargetAssemblyTypeName: BuffStateController, Assembly-CSharp
         m_MethodName: GameRestart
         m_Mode: 1
         m_Arguments:
