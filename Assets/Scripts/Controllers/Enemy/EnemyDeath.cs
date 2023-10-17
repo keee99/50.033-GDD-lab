@@ -51,13 +51,33 @@ public class EnemyDeath : MonoBehaviour
 
     public void Death()
     {
+        Death(DeathReaction.Squish);
+
+    }
+
+    public void Death(DeathReaction reaction)
+    {
         PlayDeathSound();
-        gameObject.tag = "Obstacles";
-        rb.bodyType = RigidbodyType2D.Static;
-        animator.SetTrigger("death");
         alive = false;
         increaseScore.Invoke();
 
+        if (reaction == DeathReaction.Squish)
+        {
+            gameObject.tag = "Obstacles";
+            rb.bodyType = RigidbodyType2D.Static;
+            animator.SetTrigger("death");
+
+        }
+        else if (reaction == DeathReaction.Fall)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<EdgeCollider2D>().enabled = false;
+
+            gameObject.tag = "Obstacles";
+            animator.SetTrigger("death-fall");
+            rb.AddForce(Vector2.up * 30, ForceMode2D.Impulse);
+        }
     }
 
     public void Reset()
@@ -66,8 +86,18 @@ public class EnemyDeath : MonoBehaviour
         gameObject.tag = "Enemy";
         gameObject.SetActive(true);
         alive = true;
+
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<EdgeCollider2D>().enabled = true;
+
         animator.Play("GoombaWalk");
 
+    }
+
+    public enum DeathReaction
+    {
+        Squish = -1,
+        Fall = 0
     }
 
 

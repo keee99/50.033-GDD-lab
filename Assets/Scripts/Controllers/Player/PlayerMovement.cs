@@ -163,9 +163,13 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
         {
             // If colliding the enemy from the top, kill the enemy, else kill mario
-            if ((other.contacts[0].normal.y > 0) || buffState.currentState.name == "Invincible")
+            if (other.contacts[0].normal.y > 0)
             {
                 other.gameObject.GetComponent<EnemyDeath>().Death();
+            }
+            else if (buffState.currentState.name == "Invincible")
+            {
+                other.gameObject.GetComponent<EnemyDeath>().Death(EnemyDeath.DeathReaction.Fall);
             }
             else
             {

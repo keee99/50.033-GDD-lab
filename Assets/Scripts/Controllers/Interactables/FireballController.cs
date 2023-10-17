@@ -40,7 +40,7 @@ public class FireballController : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             GetComponent<Animator>().SetTrigger("collide");
             // destroy self
-            other.gameObject.GetComponent<EnemyDeath>().Death();
+            other.gameObject.GetComponent<EnemyDeath>().Death(EnemyDeath.DeathReaction.Fall);
         }
     }
 
