@@ -20,6 +20,6 @@ MonoBehaviour:
   exitActions: []
   transitions:
   - decision: {fileID: 11400000, guid: 1d148ea1f28c7644a963e1f372afc7c2, type: 2}
-    trueState: {fileID: 11400000, guid: 5679cda6ea9db3b4ea89d35203a766a1, type: 2}
-    falseState: {fileID: 11400000, guid: 59d04fcb3046c2745a076d16f908a9b5, type: 2}
+    trueState: {fileID: 11400000, guid: 59d04fcb3046c2745a076d16f908a9b5, type: 2}
+    falseState: {fileID: 11400000, guid: 5679cda6ea9db3b4ea89d35203a766a1, type: 2}
   sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

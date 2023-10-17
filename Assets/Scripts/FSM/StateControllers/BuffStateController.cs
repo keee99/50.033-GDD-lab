@@ -9,6 +9,8 @@ public class BuffStateController : StateController
     public BuffType currentBuffType = BuffType.Default;
     public BuffState shouldBeNextState = BuffState.Default;
 
+    public GameConstants gameConstants;
+
     public void SetBuffType(BuffType type)
     {
         currentBuffType = type;
@@ -30,29 +32,37 @@ public class BuffStateController : StateController
 
     public void SetRendererEffect()
     {
-        Debug.Log("STAR STAR STAR");
-        // spriteRenderer = GetComponent<SpriteRenderer>();
-        // StartCoroutine(BlinkSpriteRenderer());
+        StartCoroutine(BlinkSpriteRenderer());
     }
 
     public void SetAudioEffect()
     {
         Debug.Log("DING DING DING DIDING DIDING DING DING");
+        // Change the mixer snapshot
+
     }
-    // private IEnumerator BlinkSpriteRenderer()
-    // {
-    //     spriteRenderer = GetComponent<SpriteRenderer>();
-    //     while (string.Equals(currentState.name, "InvincibleSmallMario", StringComparison.OrdinalIgnoreCase))
-    //     {
-    //         // Toggle the visibility of the sprite renderer
-    //         spriteRenderer.enabled = !spriteRenderer.enabled;
 
-    //         // Wait for the specified blink interval
-    //         yield return new WaitForSeconds(gameConstants.flickerInterval);
-    //     }
+    private IEnumerator BlinkSpriteRenderer()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color initialColor = spriteRenderer.color;
 
-    //     spriteRenderer.enabled = true;
-    // }
+        while (string.Equals(currentState.name, "Invincible", StringComparison.OrdinalIgnoreCase))
+        {
+            // Toggle the sprite renderer to a random color
+            spriteRenderer.color = new Color(GetRandomFloat(), GetRandomFloat(), GetRandomFloat(), 1f);
+
+            // Wait for the specified blink interval
+            yield return new WaitForSeconds(gameConstants.flickerInterval);
+        }
+        spriteRenderer.color = initialColor;
+        spriteRenderer.enabled = true;
+    }
+
+    private float GetRandomFloat()
+    {
+        return UnityEngine.Random.value;
+    }
 
     public void SetInvincibility()
     {

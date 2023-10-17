@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     // Lab 2: Audio
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
+    public BuffStateController buffState;
     [System.NonSerialized] public bool alive = true;
 
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
@@ -71,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator = GetComponent<Animator>();
+        buffState = GetComponent<BuffStateController>();
 
         marioAnimator.SetBool("onGround", onGroundState);
 
@@ -161,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag(TAG_ENEMY) && alive)
         {
             // If colliding the enemy from the top, kill the enemy, else kill mario
-            if (other.contacts[0].normal.y > 0)
+            if ((other.contacts[0].normal.y > 0) || buffState.currentState.name == "Invincible")
             {
                 other.gameObject.GetComponent<EnemyDeath>().Death();
             }
