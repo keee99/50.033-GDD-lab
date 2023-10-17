@@ -51,6 +51,11 @@ public class StarPowerupImpl : BasePowerup
             {
                 return;
             }
+
+            if (other.contacts[0].normal.y != 0 && hasSpawned)
+            {
+                rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            }
             // If colliding from sides
             if (other.contacts[0].normal.x != 0 && hasSpawned)
             {

@@ -10,6 +10,7 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     protected bool goRight = true;
     protected Rigidbody2D rb;
 
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();

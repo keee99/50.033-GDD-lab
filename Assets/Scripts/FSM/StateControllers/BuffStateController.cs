@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BuffStateController : StateController
 {
@@ -10,6 +11,10 @@ public class BuffStateController : StateController
     public BuffState shouldBeNextState = BuffState.Default;
 
     public GameConstants gameConstants;
+
+    public AudioMixer mixer;
+
+    public AudioClip starAudioClip;
 
     public void SetBuffType(BuffType type)
     {
@@ -30,22 +35,22 @@ public class BuffStateController : StateController
     }
 
 
-    public void SetRendererEffect()
+    public void SetEffects()
     {
         StartCoroutine(BlinkSpriteRenderer());
-    }
-
-    public void SetAudioEffect()
-    {
-        Debug.Log("DING DING DING DIDING DIDING DING DING");
-        // Change the mixer snapshot
-
     }
 
     private IEnumerator BlinkSpriteRenderer()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Color initialColor = spriteRenderer.color;
+
+        AudioSource envAudioSource = GameObject.Find("Environment").GetComponent<AudioSource>();
+        AudioClip bgmClip = envAudioSource.clip;
+        float time = envAudioSource.time;
+        envAudioSource.clip = starAudioClip;
+        envAudioSource.loop = true;
+        envAudioSource.Play();
 
         while (string.Equals(currentState.name, "Invincible", StringComparison.OrdinalIgnoreCase))
         {
@@ -55,6 +60,11 @@ public class BuffStateController : StateController
             // Wait for the specified blink interval
             yield return new WaitForSeconds(gameConstants.flickerInterval);
         }
+
+        envAudioSource.clip = bgmClip;
+        envAudioSource.time = time;
+        envAudioSource.Play();
+
         spriteRenderer.color = initialColor;
         spriteRenderer.enabled = true;
     }
@@ -62,11 +72,6 @@ public class BuffStateController : StateController
     private float GetRandomFloat()
     {
         return UnityEngine.Random.value;
-    }
-
-    public void SetInvincibility()
-    {
-        Debug.Log("I AM INVINCIBLE");
     }
 
 }

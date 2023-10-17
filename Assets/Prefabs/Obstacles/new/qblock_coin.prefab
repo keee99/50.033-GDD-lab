@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawned: 0
+  spriteRenderer: {fileID: 7838170248903165347}
   increaseScore:
     m_PersistentCalls:
       m_Calls:
@@ -610,5 +611,10 @@ Animator:
 --- !u!4 &5460636193190738887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1484268110538627578, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
+  m_PrefabInstance: {fileID: 6868339437598548541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7838170248903165347 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3717712713618991006, guid: dcb4242b851a1a745a44730b09e05538, type: 3}
   m_PrefabInstance: {fileID: 6868339437598548541}
   m_PrefabAsset: {fileID: 0}
